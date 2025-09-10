@@ -1,7 +1,7 @@
 const express = require("express");
 
 const { 
-    getTemario, 
+    getPedidos, 
     getTemaById,
     addTema, 
     updateTema, 
@@ -13,7 +13,7 @@ const {
 const router = express.Router();
 
 // Rutas
-router.get("/", getTemario);            // GET    /temario
+router.get("/", getPedidos);            // GET    /pedidos
 router.get("/:id", getTemaById);        // Devuelve un tema específico por id
 router.post("/agregar", addTema);       // POST   /temario/agregar
 router.put("/:id", updateTema);         // PUT    /temario/:id

@@ -7,12 +7,12 @@ function getPedidos(req, res) {
 function getPedidoById(req, res) {
     const { id } = req.params;
     const pedidos = getAll();
-    const pedido = temario.find(t => t.id === parseInt(id));
+    const pedido = pedidos.find(t => t.id === parseInt(id));
 
-    if (!tema) {
-        return res.status(404).json({ mensaje: "Tema no encontrado" });
+    if (!pedido) {
+        return res.status(404).json({ mensaje: "Pedido no encontrado" });
     }
-    res.json(tema);
+    res.json(pedido);
 }
 
 function addTema(req, res) {

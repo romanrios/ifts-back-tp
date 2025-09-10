@@ -1,8 +1,8 @@
-const temario = require("../data/pedido");
+const pedidos = require("../data/pedido");
 
 // Obtener todos los ítems
 function getAll() {
-    return temario;
+    return pedidos;
 }
 
 // Agregar nuevo tema
