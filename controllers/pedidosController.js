@@ -1,13 +1,13 @@
-const { getAll, add, update, patch, remove } = require("../models/TemarioModel");
+const { getAll, add, update, patch, remove } = require("../models/PedidosModel");
 
-function getTemario(req, res) {
+function getPedidos(req, res) {
     res.json(getAll());
 }
 
-function getTemaById(req, res) {
+function getPedidoById(req, res) {
     const { id } = req.params;
-    const temario = getAll();
-    const tema = temario.find(t => t.id === parseInt(id));
+    const pedidos = getAll();
+    const pedido = temario.find(t => t.id === parseInt(id));
 
     if (!tema) {
         return res.status(404).json({ mensaje: "Tema no encontrado" });

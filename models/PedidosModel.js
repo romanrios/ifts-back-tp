@@ -1,4 +1,4 @@
-const temario = require("../data/temario");
+const temario = require("../data/pedido");
 
 // Obtener todos los ítems
 function getAll() {

@@ -7,7 +7,7 @@ const {
     updateTema, 
     patchTema, 
     deleteTema 
-} = require("../controllers/temarioController");
+} = require("../controllers/pedidosController");
 
 
 const router = express.Router();
