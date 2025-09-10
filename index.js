@@ -1,5 +1,5 @@
 const express = require("express");
-const pedidoRoutes = require('./routes/temarioRoutes');
+const pedidoRoutes = require('./routes/pedidoRoutes');
 const app = express();
 const PORT = 3000;
 

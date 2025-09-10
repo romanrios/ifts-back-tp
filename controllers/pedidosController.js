@@ -53,4 +53,4 @@ function deleteTema(req, res) {
     res.json({ mensaje: "Tema eliminado", tema: eliminado });
 }
 
-module.exports = { getTemario, getTemaById, addTema, updateTema, patchTema, deleteTema };
+module.exports = { getPedidos, getTemaById, addTema, updateTema, patchTema, deleteTema };
