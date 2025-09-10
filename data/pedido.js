@@ -1,6 +1,6 @@
 let pedidos = [
-  { id: 1, titulo: "Intro Node JS", descripcion: "Comenzando" },
-  { id: 2, titulo: "Modulos Node JS", descripcion: "Siguiendo" }
+  { id: 1, descripcion: "Doble con papas", precio: "25000" },
+  { id: 2, descripcion: "Milkshake", precio: "10000" }
 ];
 
 module.exports = pedidos;

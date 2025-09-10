@@ -5,37 +5,37 @@ function getAll() {
     return pedidos;
 }
 
-// Agregar nuevo tema
-function add(id, titulo, descripcion) {
-    const nuevoTema = { id: parseInt(id), titulo, descripcion };
-    temario.push(nuevoTema);
-    return nuevoTema;
+// Agregar nuevo pedido
+function add(id, descripcion, precio) {
+    const nuevoPedido = { id: parseInt(id), descripcion, precio };
+    pedidos.push(nuevoPedido);
+    return nuevoPedido;
 }
 
-// Actualizar tema completo (PUT)
-function update(id, titulo, descripcion) {
-    const index = temario.findIndex(t => t.id === parseInt(id));
+// Actualizar un pedido completo
+function update(id, descripcion, precio) {
+    const index = pedidos.findIndex(t => t.id === parseInt(id));
     if (index === -1) return null;
 
-    temario[index] = { id: parseInt(id), titulo, descripcion };
-    return temario[index];
+    pedidos[index] = { id: parseInt(id), descripcion,precio };
+    return pedidos[index];
 }
 
-// Actualizar parcialmente un tema (PATCH)
+// Actualizar parcialmente un pedido  
 function patch(id, datosParciales) {
-    const index = temario.findIndex(t => t.id === parseInt(id));
+    const index = pedidos.findIndex(t => t.id === parseInt(id));
     if (index === -1) return null;
 
-    temario[index] = { ...temario[index], ...datosParciales };
-    return temario[index];
+    pedidos[index] = { ...pedidos[index], ...datosParciales };
+    return pedidos[index];
 }
 
-// Eliminar tema (DELETE)
+// Eliminar pedido 
 function remove(id) {
-    const index = temario.findIndex(t => t.id === parseInt(id));
+    const index = pedidos.findIndex(t => t.id === parseInt(id));
     if (index === -1) return null;
 
-    const eliminado = temario.splice(index, 1);
+    const eliminado = pedidos.splice(index, 1);
     return eliminado[0];
 }
 
