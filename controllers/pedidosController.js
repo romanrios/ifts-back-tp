@@ -15,42 +15,42 @@ function getPedidoById(req, res) {
     res.json(pedido);
 }
 
-function addTema(req, res) {
-    const { id, titulo, descripcion } = req.body;
-    const nuevoTema = add(id, titulo, descripcion);
-    res.json({ mensaje: "Tema agregado", tema: nuevoTema });
+function addPedido(req, res) {
+    const { id, descripcion, precio  } = req.body;
+    const nuevoPedido = add(id, descripcion, precio);
+    res.json({ mensaje: "Pedido agregado", pedido: nuevoPedido });
 }
 
-// PUT - reemplazar tema completo
-function updateTema(req, res) {
+// PUT - reemplazar el pedido completo
+function updatePedido(req, res) {
     const { id } = req.params;
-    const { titulo, descripcion } = req.body;
-    const actualizado = update(id, titulo, descripcion);
+    const { descripcion, precio } = req.body;
+    const actualizado = update(id, descripcion, precio);
 
     if (!actualizado) {
-        return res.status(404).json({ mensaje: "Tema no encontrado" });
+        return res.status(404).json({ mensaje: "Pedido no encontrado" });
     }
-    res.json({ mensaje: "Tema actualizado (PUT)", tema: actualizado });
+    res.json({ mensaje: "Pedido actualizado", pedido: actualizado });
 }
 
-function patchTema(req, res) {
+function patchPedido(req, res) {
     const { id } = req.params;
     const actualizado = patch(id, req.body);
 
     if (!actualizado) {
-        return res.status(404).json({ mensaje: "Tema no encontrado" });
+        return res.status(404).json({ mensaje: "Pedido no encontrado" });
     }
-    res.json({ mensaje: "Tema modificado parcialmente", tema: actualizado });
+    res.json({ mensaje: "Pedido modificado parcialmente", pedido: actualizado });
 }
 
-function deleteTema(req, res) {
+function deletePedido(req, res) {
     const { id } = req.params;
     const eliminado = remove(id);
 
     if (!eliminado) {
-        return res.status(404).json({ mensaje: "Tema no encontrado" });
+        return res.status(404).json({ mensaje: "Pedido no encontrado" });
     }
-    res.json({ mensaje: "Tema eliminado", tema: eliminado });
+    res.json({ mensaje: "Pedido eliminado", tema: eliminado });
 }
 
-module.exports = { getPedidos, getTemaById, addTema, updateTema, patchTema, deleteTema };
+module.exports = { getPedidos, getPedidoById, addPedido, updatePedido, patchPedido, deletePedido };
