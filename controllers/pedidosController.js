@@ -50,7 +50,7 @@ function deletePedido(req, res) {
     if (!eliminado) {
         return res.status(404).json({ mensaje: "Pedido no encontrado" });
     }
-    res.json({ mensaje: "Pedido eliminado", tema: eliminado });
+    res.json({ mensaje: "Pedido eliminado", pedido: eliminado });
 }
 
 module.exports = { getPedidos, getPedidoById, addPedido, updatePedido, patchPedido, deletePedido };
