@@ -8,5 +8,10 @@
     "id": 2,
     "descripcion": "Milkshake",
     "precio": "10000"
+  },
+  {
+    "id": 3,
+    "descripcion": "birra",
+    "precio": "5000"
   }
 ]
