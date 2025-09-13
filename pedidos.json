@@ -1,12 +1,14 @@
 [
   {
     "id": 1,
-    "descripcion": "Doble con papas",
-    "precio": "25000"
+    "cliente": "2",
+    "descripcion": "hamburguesa y cocacola"
+    "plataforma":"pedidos ya"
   },
   {
     "id": 2,
     "descripcion": "Milkshake",
-    "precio": "10000"
+    "precio": "10000",
+    "plataforma":"rappi"
   }
 ]

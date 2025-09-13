@@ -7,7 +7,7 @@ const {
     updatePedido, 
     patchPedido, 
     deletePedido
-} = require("../controllers/pedidosController");
+} = require("../controllers/empladosController");
 
 
 const router = express.Router();

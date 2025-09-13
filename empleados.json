@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "rol": "Cocinero",
+    "area": "cocina"
+  },
+  {
+    "id": 2,
+    "rol": "administrador",
+    "area": "administracion"
+  }
+]

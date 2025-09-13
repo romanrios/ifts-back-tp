@@ -1,4 +1,4 @@
-const { getAll, add, update, patch, remove } = require("../models/PedidosModel");
+const { getAll, add, update, patch, remove } = require("../models/EmpleadosModel");
 
 function getPedidos(req, res) {
     res.json(getAll());
