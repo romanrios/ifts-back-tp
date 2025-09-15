@@ -8,5 +8,10 @@
     "id": 2,
     "rol": "administrador",
     "area": "administracion"
+  },
+  {
+    "id": 3,
+    "rol": "Cajero",
+    "area": "caja"
   }
 ]

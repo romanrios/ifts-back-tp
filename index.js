@@ -1,5 +1,6 @@
 const express = require("express");
 const pedidoRoutes = require('./routes/pedidoRoutes'); 
+const empleadoRoutes = require('./routes/empleadoRoutes.js');
 const fs = require("fs");
 const app = express();
 const PORT = 3000;

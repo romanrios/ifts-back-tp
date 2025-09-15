@@ -1,56 +1,55 @@
 const { getAll, add, update, patch, remove } = require("../models/EmpleadosModel");
 
-function getPedidos(req, res) {
+function getEmpleados(req, res) {
     res.json(getAll());
 }
 
-function getPedidoById(req, res) {
+function getEmpleadoById(req, res) {
     const { id } = req.params;
-    const pedidos = getAll();
-    const pedido = pedidos.find(t => t.id === parseInt(id));
+    const empleados = getAll();
+    const empleado = empleados.find(e => e.id === parseInt(id));
 
-    if (!pedido) {
-        return res.status(404).json({ mensaje: "Pedido no encontrado" });
+    if (!empleado) {
+        return res.status(404).json({ mensaje: "Empleado no encontrado" });
     }
-    res.json(pedido);
+    res.json(empleado);
 }
 
-function addPedido(req, res) {
-    const { id, descripcion, precio  } = req.body;
-    const nuevoPedido = add(id, descripcion, precio);
-    res.json({ mensaje: "Pedido agregado", pedido: nuevoPedido });
+function addEmpleado(req, res) {
+    const { id, rol, area } = req.body;
+    const nuevoEmpleado = add(id, rol, area);
+    res.json({ mensaje: "Empleado agregado", empleado: nuevoEmpleado });
 }
 
-// PUT - reemplazar el pedido completo
-function updatePedido(req, res) {
+function updateEmpleado(req, res) {
     const { id } = req.params;
-    const { descripcion, precio } = req.body;
-    const actualizado = update(id, descripcion, precio);
+    const { rol, area } = req.body;
+    const actualizado = update(id, rol, area);
 
     if (!actualizado) {
-        return res.status(404).json({ mensaje: "Pedido no encontrado" });
+        return res.status(404).json({ mensaje: "Empleado no encontrado" });
     }
-    res.json({ mensaje: "Pedido actualizado", pedido: actualizado });
+    res.json({ mensaje: "Empleado actualizado", empleado: actualizado });
 }
 
-function patchPedido(req, res) {
+function patchEmpleado(req, res) {
     const { id } = req.params;
     const actualizado = patch(id, req.body);
 
     if (!actualizado) {
-        return res.status(404).json({ mensaje: "Pedido no encontrado" });
+        return res.status(404).json({ mensaje: "Empleado no encontrado" });
     }
-    res.json({ mensaje: "Pedido modificado parcialmente", pedido: actualizado });
+    res.json({ mensaje: "Empleado modificado parcialmente", empleado: actualizado });
 }
 
-function deletePedido(req, res) {
+function deleteEmpleado(req, res) {
     const { id } = req.params;
     const eliminado = remove(id);
 
     if (!eliminado) {
-        return res.status(404).json({ mensaje: "Pedido no encontrado" });
+        return res.status(404).json({ mensaje: "Empleado no encontrado" });
     }
-    res.json({ mensaje: "Pedido eliminado", pedido: eliminado });
+    res.json({ mensaje: "Empleado eliminado", empleado: eliminado });
 }
 
-module.exports = { getPedidos, getPedidoById, addPedido, updatePedido, patchPedido, deletePedido };
+module.exports = { getEmpleados, getEmpleadoById, addEmpleado, updateEmpleado, patchEmpleado, deleteEmpleado };

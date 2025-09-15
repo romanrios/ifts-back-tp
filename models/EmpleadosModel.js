@@ -17,38 +17,38 @@ function getAll() {
   return leerDatos();
 }
 
-// Agregar nuevo pedido
-function add(id, descripcion, precio) {
-  const pedidos = leerDatos();
-  const nuevoPedido = { id: parseInt(id), descripcion, precio };
-  pedidos.push(nuevoPedido);
-  escribirDatos(pedidos);
-  return nuevoPedido;
+// Agregar nuevo empleado
+function add(id, rol, area) {
+  const empleados = leerDatos();
+  const nuevoEmpleado = { id: parseInt(id), rol, area };
+  empleados.push(nuevoEmpleado);
+  escribirDatos(empleados);
+  return nuevoEmpleado;
 }
 
-// Actualizar un pedido completo
-function update(id, descripcion, precio) {
-  const pedidos = leerDatos();
-  const index = pedidos.findIndex(t => t.id === parseInt(id));
+// Actualizar datos de un empleado
+function update(id, rol, area) {
+  const empleados = leerDatos();
+  const index = empleados.findIndex(e => e.id === parseInt(id));
   if (index === -1) return null;
 
-  pedidos[index] = { id: parseInt(id), descripcion, precio };
-  escribirDatos(pedidos);
-  return pedidos[index];
+  empleados[index] = { id: parseInt(id), rol, area };
+  escribirDatos(empleados);
+  return empleados[index];
 }
 
-// Actualizar parcialmente un pedido 
+// Actualizar parcialmente un empleado
 function patch(id, datosParciales) {
-  const pedidos = leerDatos(); 
-  const index = pedidos.findIndex(t => t.id === parseInt(id));
+  const empleados = leerDatos();
+  const index = empleados.findIndex(e => e.id === parseInt(id));
   if (index === -1) return null;
 
-  pedidos[index] = { ...pedidos[index], ...datosParciales };
-  escribirDatos(pedidos);
-  return pedidos[index];
+  empleados[index] = { ...empleados[index], ...datosParciales };
+  escribirDatos(empleados);
+  return empleados[index];
 }
 
-// Eliminar pedido 
+// Eliminar empleado
 function remove(id) {
   const pedidos = leerDatos();
   const index = pedidos.findIndex(t => t.id === parseInt(id));
