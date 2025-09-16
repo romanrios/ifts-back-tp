@@ -16,16 +16,16 @@ function getPedidoById(req, res) {
 }
 
 function addPedido(req, res) {
-    const { id, descripcion, precio  } = req.body;
-    const nuevoPedido = add(id, descripcion, precio);
+    const { id, cliente, descripcion, precio, plataforma, idEmpleado } = req.body;
+    const nuevoPedido = add({ id, cliente, descripcion, precio, plataforma, idEmpleado });
     res.json({ mensaje: "Pedido agregado", pedido: nuevoPedido });
 }
 
 // PUT - reemplazar el pedido completo
 function updatePedido(req, res) {
     const { id } = req.params;
-    const { descripcion, precio } = req.body;
-    const actualizado = update(id, descripcion, precio);
+    const { cliente, descripcion, precio, plataforma, idEmpleado } = req.body;
+    const actualizado = update(id, { cliente, descripcion, precio, plataforma, idEmpleado });
 
     if (!actualizado) {
         return res.status(404).json({ mensaje: "Pedido no encontrado" });
