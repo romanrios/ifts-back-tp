@@ -15,8 +15,8 @@
     "idEmpleado": "1"
   },
   {
-    "id": 10,
-    "cliente": "25",
+    "id": 3,
+    "cliente": "2",
     "descripcion": "Burger XXL",
     "precio": "25000",
     "plataforma": "Pedidos Ya",
