@@ -3,12 +3,14 @@
     "id": 1,
     "cliente": "2",
     "descripcion": "hamburguesa y cocacola",
-    "plataforma":"pedidos ya"
+    "plataforma":"pedidos ya",
+    "idEmpleado":"1"
   },
   {
     "id": 2,
     "descripcion": "Milkshake",
     "precio": "10000",
-    "plataforma":"rappi"
+    "plataforma":"rappi",
+    "idEmpleado":"2"
   }
 ]
