@@ -1,5 +1,6 @@
 const express = require("express");
-const pedidoRoutes = require('./routes/pedidoRoutes'); 
+const indexRoutes = require('./routes/indexRoutes.js');
+const pedidoRoutes = require('./routes/pedidoRoutes.js');
 const empleadoRoutes = require('./routes/empleadoRoutes.js');
 const path = require("path");
 const app = express();
@@ -12,9 +13,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
 
 // Rutas
-app.get("/", (req, res) => {
-    res.render("index");
-});
+app.use("/", indexRoutes);
 app.use("/pedidos", pedidoRoutes);
 app.use("/empleados", empleadoRoutes);
 

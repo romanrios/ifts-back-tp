@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h2 Ha ocurrido un error.
+    if mensaje
+      p #{mensaje}
+    else
+      p Lamentamos las molestias. Algo salió mal.
+    a(href="/") Volver al inicio
