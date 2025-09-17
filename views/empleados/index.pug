@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  h2 Lista de Empleados
+  table.table.table-bordered
+    thead
+      tr
+        th ID
+        th Rol
+        th Área
+        th Acciones
+    tbody
+      each empleado in empleados
+        tr
+          td= empleado.id
+          td= empleado.rol
+          td= empleado.area
+          td
+            a.btn.btn-sm.btn-info(href=`/empleados/${empleado.id}`) Ver

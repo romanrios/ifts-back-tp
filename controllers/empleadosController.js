@@ -1,7 +1,8 @@
 const { getAll, add, update, patch, remove } = require("../models/EmpleadosModel");
 
 function getEmpleados(req, res) {
-    res.json(getAll());
+    const empleados = getAll();
+    res.render("empleados/index", { empleados: empleados });
 }
 
 function getEmpleadoById(req, res) {
@@ -10,7 +11,7 @@ function getEmpleadoById(req, res) {
     const empleado = empleados.find(e => e.id === parseInt(id));
 
     if (!empleado) {
-        return res.status(404).json({ mensaje: "Empleado no encontrado" });
+        return res.status(404).render("error", { mensaje: "Empleado no encontrado" });
     }
     res.json(empleado);
 }

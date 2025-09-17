@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  h2 Lista de Pedidos
+  table.table.table-striped
+    thead
+      tr
+        th ID
+        th Cliente
+        th Descripción
+        th Precio
+        th Plataforma
+        th ID Empleado
+        th Acciones
+    tbody
+      each pedido in pedidos
+        tr
+          td= pedido.id
+          td= pedido.cliente
+          td= pedido.descripcion
+          td= pedido.precio || '-'
+          td= pedido.plataforma
+          td= pedido.idEmpleado
+          td
+            a.btn.btn-sm.btn-info(href=`/pedidos/${pedido.id}`) Ver
