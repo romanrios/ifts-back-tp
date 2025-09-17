@@ -1,10 +1,9 @@
 extends layout
 
 block content
-  h2 Bienvenido al Sistema de Gestión del Restaurante
-  p Selecciona una sección para administrar:
+  h2.mb-3 Bienvenido al Sistema de Gestión
+  p.mb-4 Selecciona una sección para administrar los datos del restaurante:
 
-  div.mt-4
-    a.btn.btn-primary.me-2(href="/") Inicio
-    a.btn.btn-primary.me-2(href="/empleados") Empleados
+  .d-flex.gap-2
+    a.btn.btn-primary(href="/empleados") Empleados
     a.btn.btn-success(href="/pedidos") Pedidos

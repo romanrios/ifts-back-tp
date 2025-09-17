@@ -1,7 +1,8 @@
 const { getAll, add, update, patch, remove } = require("../models/PedidosModel");
 
 function getPedidos(req, res) {
-    res.json(getAll());
+    const pedidos = getAll();
+    res.render("pedidos/index", { pedidos: pedidos });
 }
 
 function getPedidoById(req, res) {
@@ -10,9 +11,9 @@ function getPedidoById(req, res) {
     const pedido = pedidos.find(t => t.id === parseInt(id));
 
     if (!pedido) {
-        return res.status(404).json({ mensaje: "Pedido no encontrado" });
+        return res.status(404).render("error", { mensaje: "Pedido no encontrado" });
     }
-    res.json(pedido);
+    res.render("pedidos/detalle", { pedido: pedido });
 }
 
 function addPedido(req, res) {

@@ -1,18 +1,19 @@
 const express = require("express");
+const path = require("path");
 const indexRoutes = require('./routes/indexRoutes.js');
 const pedidoRoutes = require('./routes/pedidoRoutes.js');
 const empleadoRoutes = require('./routes/empleadoRoutes.js');
-const path = require("path");
+
 const app = express();
 const PORT = 3000;
 
-// Configurar motor de plantillas
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
-// Rutas
 app.use("/", indexRoutes);
 app.use("/pedidos", pedidoRoutes);
 app.use("/empleados", empleadoRoutes);

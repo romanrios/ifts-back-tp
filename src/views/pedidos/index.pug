@@ -1,7 +1,9 @@
 extends ../layout
 
 block content
-  h2 Lista de Pedidos
+  .d-flex.justify-content-between.align-items-center.mb-3
+    h2.mb-0 Lista de Pedidos
+    a.btn.btn-success(href="/pedidos/agregar") Agregar Pedido
   table.table.table-striped
     thead
       tr
