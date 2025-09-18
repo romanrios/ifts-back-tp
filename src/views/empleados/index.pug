@@ -1,22 +1,28 @@
 extends ../layout
 
 block content
-  .d-flex.justify-content-between.align-items-center.mb-3
+  .d-flex.justify-content-between.align-items-center.mb-3.flex-wrap
     h2.mb-0 Lista de Empleados
-    a.btn.btn-success(href="/empleados/agregar") Agregar Empleado
+    a.btn.btn-success.mt-2.mt-sm-0(href="/empleados/agregar") Agregar Empleado
 
-  table.table.table-bordered
-    thead
-      tr
-        th ID
-        th Rol
-        th Área
-        th Acciones
-    tbody
-      each empleado in empleados
+  .table-responsive
+    table.table.table-bordered.table-sm
+      thead
         tr
-          td= empleado.id
-          td= empleado.rol
-          td= empleado.area
-          td
-            a.btn.btn-sm.btn-info(href=`/empleados/${empleado.id}`) Ver
+          th ID
+          th Rol
+          th Área
+          th Acciones
+      tbody
+        each empleado in empleados
+          tr
+            td= empleado.id
+            td= empleado.rol
+            td= empleado.area
+            td.d-flex.gap-1.flex-wrap
+              a.btn.btn-sm.btn-outline-info(href=`/empleados/${empleado.id}` title="Ver") 
+                i(class="bi-eye fs-5") 
+              a.btn.btn-sm.btn-outline-warning(href=`/empleados/${empleado.id}/editar` title="Editar") 
+                i(class="bi-pencil fs-5")
+              a.btn.btn-sm.btn-outline-danger(href=`/empleados/${empleado.id}/borrar` title="Borrar") 
+                i(class="bi-trash fs-5")

@@ -5,6 +5,13 @@ function getEmpleados(req, res) {
     res.render("empleados/index", { empleados: empleados });
 }
 
+function getEmpleadoBorrar(req, res) {
+    const { id } = req.params;
+    const empleado = getAll().find(p => p.id === parseInt(id));
+    if (!empleado) return res.status(404).render('error', { mensaje: 'Empleado no encontrado' });
+    res.render('empleados/borrar', { empleado });
+}
+
 function getEmpleadoById(req, res) {
     const { id } = req.params;
     const empleados = getAll();
@@ -57,4 +64,4 @@ function deleteEmpleado(req, res) {
     res.json({ mensaje: "Empleado eliminado", empleado: eliminado });
 }
 
-module.exports = { getEmpleados, getEmpleadoById, addEmpleado, updateEmpleado, patchEmpleado, deleteEmpleado };
+module.exports = { getEmpleados, getEmpleadoBorrar, getEmpleadoById, addEmpleado, updateEmpleado, patchEmpleado, deleteEmpleado };

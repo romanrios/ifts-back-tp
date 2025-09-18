@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  h2.mb-3 Confirmar borrado
+  p ¿Estás seguro de que quieres eliminar el empleado ID: #{empleado.id}, Rol: #{empleado.rol}, Área: #{empleado.area}?
+
+  form(action=`/empleados/${empleado.id}?_method=DELETE` method="POST").d-flex.gap-2
+    button.btn.btn-danger(type="submit") Sí, borrar
+    a.btn.btn-secondary(href="/empleados") Cancelar
