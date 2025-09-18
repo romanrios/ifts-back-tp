@@ -17,13 +17,10 @@ function getEmpleadoById(req, res) {
 }
 
 function addEmpleado(req, res) {
-    const { id, rol, area } = req.body;
+    const { rol, area } = req.body;
     try {
-        const nuevoEmpleado = add(id, rol, area);
+        const nuevoEmpleado = add(rol, area);
         res.redirect("/empleados");
-
-        // Mensaje de éxito:
-        res.render("empleados/error", { mensaje: `Empleado agregado correctamente: ID ${nuevoEmpleado.id}, Rol ${nuevoEmpleado.rol}, Área ${nuevoEmpleado.area}` });
     } catch (error) {
         res.status(500).render("error", { mensaje: "Error al agregar empleado" });
     }

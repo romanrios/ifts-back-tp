@@ -4,12 +4,12 @@ const path = require("path");
 const DB_FILE = path.join(__dirname, "..", "data", "empleados.json");
 
 const leerDatos = () => {
-    const data = fs.readFileSync(DB_FILE, 'utf-8'); 
-    return JSON.parse(data);
+  const data = fs.readFileSync(DB_FILE, 'utf-8');
+  return JSON.parse(data);
 };
 
 const escribirDatos = (data) => {
-    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
+  fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
 };
 
 // Obtener todos los ítems
@@ -18,13 +18,19 @@ function getAll() {
 }
 
 // Agregar nuevo empleado
-function add(id, rol, area) {
+function add(rol, area) {
   const empleados = leerDatos();
-  const nuevoEmpleado = { id: parseInt(id), rol, area };
+  const ultimoId = empleados.length > 0 ? empleados[empleados.length - 1].id : 0;
+  const nuevoEmpleado = {
+    id: ultimoId + 1,
+    rol,
+    area,
+  };
   empleados.push(nuevoEmpleado);
   escribirDatos(empleados);
   return nuevoEmpleado;
 }
+
 
 // Actualizar datos de un empleado
 function update(id, rol, area) {

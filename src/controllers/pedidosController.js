@@ -6,9 +6,9 @@ function getPedidos(req, res) {
     res.render("pedidos/index", { pedidos: pedidos });
 }
 
-function getPedidoAgregar(req,res){
-     const empleados = getEmpleados();
-  res.render("pedidos/agregar", { empleados });
+function getPedidoAgregar(req, res) {
+    const empleados = getEmpleados();
+    res.render("pedidos/agregar", { empleados });
 }
 
 function getPedidoById(req, res) {
@@ -23,9 +23,13 @@ function getPedidoById(req, res) {
 }
 
 function addPedido(req, res) {
-    const { id, cliente, descripcion, precio, plataforma, idEmpleado } = req.body;
-    const nuevoPedido = add({ id, cliente, descripcion, precio, plataforma, idEmpleado });
-    res.json({ mensaje: "Pedido agregado", pedido: nuevoPedido });
+    const { cliente, descripcion, precio, plataforma, idEmpleado } = req.body;
+    try {
+        const nuevoPedido = add({ cliente, descripcion, precio, plataforma, idEmpleado });
+        res.redirect("/pedidos");
+    } catch (error) {
+        res.status(500).render("error", { mensaje: "Error al agregar pedido" });
+    }
 }
 
 // PUT - reemplazar el pedido completo

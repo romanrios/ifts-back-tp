@@ -17,11 +17,11 @@ function getAll() {
   return leerDatos();
 }
 
-// Agregar nuevo pedido
-function add({ id, cliente, descripcion, precio, plataforma, idEmpleado }) {
+function add({ cliente, descripcion, precio, plataforma, idEmpleado }) {
   const pedidos = leerDatos();
+  const ultimoId = pedidos.length > 0 ? pedidos[pedidos.length - 1].id : 0;
   const nuevoPedido = {
-    id: parseInt(id),
+    id: ultimoId + 1,
     cliente,
     descripcion,
     precio,
