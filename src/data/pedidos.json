@@ -30,13 +30,5 @@
     "precio": "10500",
     "plataforma": "Sabor Urbano",
     "idEmpleado": "4"
-  },
-  {
-    "id": 5,
-    "cliente": "1",
-    "descripcion": "Milkshake",
-    "precio": "12500",
-    "plataforma": "Sabor Urbano",
-    "idEmpleado": "2"
   }
 ]
