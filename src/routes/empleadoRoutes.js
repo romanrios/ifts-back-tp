@@ -1,5 +1,5 @@
 const express = require("express");
-
+const router = express.Router();
 const {
     getEmpleados,
     getEmpleadoById,
@@ -9,11 +9,8 @@ const {
     deleteEmpleado
 } = require("../controllers/empleadosController");
 
-const router = express.Router();
-
-// Rutas
 router.get("/", getEmpleados);
-router.get("/agregar", (req, res) => {res.render('empleados/agregar')});
+router.get("/agregar", (req, res) => { res.render('empleados/agregar') });
 router.get("/:id", getEmpleadoById);
 router.post("/agregar", addEmpleado);
 router.put("/:id", updateEmpleado);

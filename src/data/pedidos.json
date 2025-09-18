@@ -21,5 +21,21 @@
     "precio": "25000",
     "plataforma": "Pedidos Ya",
     "idEmpleado": "2"
+  },
+  {
+    "id": 32,
+    "cliente": "2323",
+    "descripcion": "23232323",
+    "precio": "32",
+    "plataforma": "devefgegv",
+    "idEmpleado": "435"
+  },
+  {
+    "id": 333,
+    "cliente": "45",
+    "descripcion": "helado vainilla",
+    "precio": "34",
+    "plataforma": "Sabor Urbano",
+    "idEmpleado": "3"
   }
 ]

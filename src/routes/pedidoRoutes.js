@@ -1,24 +1,21 @@
 const express = require("express");
-
-const { 
-    getPedidos, 
+const router = express.Router();
+const {
+    getPedidos,
     getPedidoById,
-    addPedido, 
-    updatePedido, 
-    patchPedido, 
-    deletePedido
+    addPedido,
+    updatePedido,
+    patchPedido,
+    deletePedido,
+    getPedidoAgregar
 } = require("../controllers/pedidosController");
 
-
-const router = express.Router();
-
-// Rutas
-router.get("/", getPedidos);            // GET    /pedidos
-router.get("/:id", getPedidoById);        // Devuelve un pedido específico por id
-router.post("/agregar", addPedido);       // POST   /pedidos/agregar
-router.put("/:id", updatePedido);         // PUT    /pedidos/:id
-router.patch("/:id", patchPedido);        // PATCH  /pedidos/:id
-router.delete("/:id", deletePedido);      // DELETE /pedidos/:id
+router.get("/", getPedidos);
+router.get("/agregar", getPedidoAgregar);
+router.get("/:id", getPedidoById);
+router.post("/agregar", addPedido);
+router.put("/:id", updatePedido);
+router.patch("/:id", patchPedido);
+router.delete("/:id", deletePedido);
 
 module.exports = router;
-

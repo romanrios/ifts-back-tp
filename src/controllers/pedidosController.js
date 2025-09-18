@@ -1,8 +1,14 @@
 const { getAll, add, update, patch, remove } = require("../models/PedidosModel");
+const { getAll: getEmpleados } = require("../models/EmpleadosModel");
 
 function getPedidos(req, res) {
     const pedidos = getAll();
     res.render("pedidos/index", { pedidos: pedidos });
+}
+
+function getPedidoAgregar(req,res){
+     const empleados = getEmpleados();
+  res.render("pedidos/agregar", { empleados });
 }
 
 function getPedidoById(req, res) {
@@ -54,4 +60,4 @@ function deletePedido(req, res) {
     res.json({ mensaje: "Pedido eliminado", pedido: eliminado });
 }
 
-module.exports = { getPedidos, getPedidoById, addPedido, updatePedido, patchPedido, deletePedido };
+module.exports = { getPedidos, getPedidoById, addPedido, updatePedido, patchPedido, deletePedido, getPedidoAgregar };
