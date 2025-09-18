@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  h2.mb-3 Editar Empleado
+
+  form(action=`/empleados/${empleado.id}?_method=PUT` method="POST")
+    .mb-3
+      label.form-label(for="rol") Rol
+      input.form-control(type="text" name="rol" id="rol" value=empleado.rol required)
+    .mb-3
+      label.form-label(for="area") Área
+      input.form-control(type="text" name="area" id="area" value=empleado.area required)
+    .d-flex.gap-2
+      button.btn.btn-primary(type="submit") Guardar cambios
+      a.btn.btn-secondary(href="/empleados") Cancelar

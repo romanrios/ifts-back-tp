@@ -4,18 +4,15 @@ block content
   h2.mb-3 Agregar Nuevo Pedido
 
   form(action="/pedidos/agregar" method="POST")
-    //- .mb-3
-    //-   label.form-label(for="id") ID del Pedido
-    //-   input.form-control(type="number" name="id" id="id" required)
     .mb-3
       label.form-label(for="cliente") ID del Cliente
       input.form-control(type="text" name="cliente" id="cliente" placeholder="Ej: 1" required)
     .mb-3
       label.form-label(for="descripcion") Descripción
-      input.form-control(type="text" name="descripcion" id="descripcion" placeholder="Ej: hamburguesa y cocacola" required)
+      input.form-control(type="text" name="descripcion" id="descripcion" placeholder="Ej: Hamburguesa y Papas Fritas" required)
     .mb-3
       label.form-label(for="precio") Precio
-      input.form-control(type="number" step="0.01" name="precio" id="precio" placeholder="Ej: 150" required)
+      input.form-control(type="number" step="0.01" name="precio" id="precio" placeholder="Ej: 10000" required)
     .mb-3
       label.form-label(for="plataforma") Plataforma
       select.form-select(name="plataforma" id="plataforma" required)

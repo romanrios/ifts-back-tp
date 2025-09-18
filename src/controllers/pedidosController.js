@@ -11,6 +11,14 @@ function getPedidoAgregar(req, res) {
     res.render("pedidos/agregar", { empleados });
 }
 
+function getPedidoEditar(req, res) {
+    const { id } = req.params;
+    const pedidos = getAll();
+    const pedido = pedidos.find(p => p.id === parseInt(id));
+    if (!pedido) return res.status(404).render("error", { mensaje: "Pedido no encontrado" });
+    res.render("pedidos/editar", { pedido });
+}
+
 function getPedidoBorrar(req, res) {
     const { id } = req.params;
     const pedido = getAll().find(p => p.id === parseInt(id));
@@ -46,9 +54,9 @@ function updatePedido(req, res) {
     const actualizado = update(id, { cliente, descripcion, precio, plataforma, idEmpleado });
 
     if (!actualizado) {
-        return res.status(404).json({ mensaje: "Pedido no encontrado" });
+        return res.status(404).render("error", { mensaje: "Pedido no encontrado" });
     }
-    res.json({ mensaje: "Pedido actualizado", pedido: actualizado });
+    res.redirect("/pedidos");
 }
 
 function patchPedido(req, res) {
@@ -71,4 +79,4 @@ function deletePedido(req, res) {
     res.redirect("/pedidos");
 }
 
-module.exports = { getPedidos, getPedidoAgregar, getPedidoBorrar, getPedidoById, addPedido, updatePedido, patchPedido, deletePedido };
+module.exports = { getPedidos, getPedidoAgregar, getPedidoEditar, getPedidoBorrar, getPedidoById, addPedido, updatePedido, patchPedido, deletePedido };

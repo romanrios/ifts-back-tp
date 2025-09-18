@@ -3,6 +3,7 @@ const router = express.Router();
 const {
     getPedidos,
     getPedidoAgregar,
+    getPedidoEditar,
     getPedidoBorrar,
     getPedidoById,
     addPedido,
@@ -13,6 +14,7 @@ const {
 
 router.get("/", getPedidos);
 router.get("/agregar", getPedidoAgregar);
+router.get("/:id/editar", getPedidoEditar);
 router.get("/:id/borrar", getPedidoBorrar);
 router.get("/:id", getPedidoById);
 router.post("/agregar", addPedido);
