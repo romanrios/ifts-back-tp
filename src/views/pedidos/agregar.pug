@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  h2.mb-3 Agregar Nuevo Pedido
+
+  form(action="/pedidos/agregar" method="POST")
+    .mb-3
+      label.form-label(for="cliente") ID del Cliente
+      input.form-control(type="text" name="cliente" id="cliente" placeholder="Ej: 1" required)
+    .mb-3
+      label.form-label(for="descripcion") Descripción
+      input.form-control(type="text" name="descripcion" id="descripcion" placeholder="Ej: Hamburguesa y Papas Fritas" required)
+    .mb-3
+      label.form-label(for="precio") Precio
+      input.form-control(type="number" step="0.01" name="precio" id="precio" placeholder="Ej: 10000" required)
+    .mb-3
+      label.form-label(for="plataforma") Plataforma
+      select.form-select(name="plataforma" id="plataforma" required)
+        option(value="" disabled selected) Selecciona una plataforma
+        option(value="Sabor Urbano") Sabor Urbano
+        option(value="Rappi") Rappi
+        option(value="Pedidos Ya") Pedidos Ya
+    .mb-3
+      label.form-label(for="idEmpleado") Empleado asignado
+      select.form-select(name="idEmpleado" id="idEmpleado" required)
+        option(value="" disabled selected) Selecciona un empleado
+        each empleado in empleados
+          option(value=empleado.id) #{empleado.id} - #{empleado.rol} (#{empleado.area})
+    .d-flex.gap-2
+      button.btn.btn-primary(type="submit") Agregar Pedido
+      a.btn.btn-secondary(href="/") Cancelar

@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  h2.mb-3 Editar Pedido
+
+  form(action=`/pedidos/${pedido.id}?_method=PUT` method="POST")
+    .mb-3
+      label.form-label(for="cliente") Cliente
+      input.form-control(type="text" name="cliente" id="cliente" value=pedido.cliente required)
+    .mb-3
+      label.form-label(for="descripcion") Descripción
+      input.form-control(type="text" name="descripcion" id="descripcion" value=pedido.descripcion required)
+    .mb-3
+      label.form-label(for="precio") Precio
+      input.form-control(type="number" name="precio" id="precio" value=pedido.precio required)
+    .mb-3
+      label.form-label(for="plataforma") Plataforma
+      input.form-control(type="text" name="plataforma" id="plataforma" value=pedido.plataforma required)
+    .mb-3
+      label.form-label(for="idEmpleado") ID Empleado
+      input.form-control(type="number" name="idEmpleado" id="idEmpleado" value=pedido.idEmpleado required)
+    .d-flex.gap-2
+      button.btn.btn-primary(type="submit") Guardar cambios
+      a.btn.btn-secondary(href="/pedidos") Cancelar

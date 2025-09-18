@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  h2.mb-3 Agregar Nuevo Empleado
+  form(action="/empleados/agregar" method="POST")
+    .mb-3
+      label.form-label(for="rol") Rol
+      input.form-control(type="text" name="rol" id="rol" placeholder="Ej: Cocinero" required)
+    .mb-3
+      label.form-label(for="area") Área
+      input.form-control(type="text" name="area" id="area" placeholder="Ej: Cocina" required)
+    .d-flex.gap-2
+      button.btn.btn-primary(type="submit") Agregar Empleado
+      a.btn.btn-secondary(href="/") Cancelar

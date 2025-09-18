@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+  .d-flex.justify-content-between.align-items-center.mb-3
+    h2.mb-0 Lista de Pedidos
+    a.btn.btn-success(href="/pedidos/agregar") Agregar Pedido
+
+  .table-responsive
+    table.table.table-striped.table-sm
+      thead
+        tr
+          th ID
+          th Cliente
+          th Descripción
+          th Precio
+          th Plataforma
+          th ID Empleado
+          th Acciones
+      tbody
+        each pedido in pedidos
+          tr
+            td= pedido.id
+            td= pedido.cliente
+            td= pedido.descripcion
+            td= pedido.precio || '-'
+            td= pedido.plataforma
+            td= pedido.idEmpleado
+            td.d-flex.gap-1.flex-wrap
+              a.btn.btn-sm.btn-light(href=`/pedidos/${pedido.id}` title="Ver") 
+                i(class="bi-eye fs-5") 
+              a.btn.btn-sm.btn-light(href=`/pedidos/${pedido.id}/editar` title="Editar") 
+                i(class="bi-pencil fs-5")
+              a.btn.btn-sm.btn-light(href=`/pedidos/${pedido.id}/borrar` title="Borrar") 
+                i(class="bi-trash fs-5")

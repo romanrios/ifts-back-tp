@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "rol": "Administrador General",
+    "area": "Administración"
+  },
+  {
+    "id": 2,
+    "rol": "Cajero",
+    "area": "Caja"
+  },
+  {
+    "id": 3,
+    "rol": "Cocinero",
+    "area": "Cocina"
+  },
+  {
+    "id": 4,
+    "rol": "Asistente",
+    "area": "Pedidos"
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "cliente": "1",
+    "descripcion": "Hamburguesa y Coca-Cola",
+    "precio": "17500",
+    "plataforma": "Rappi",
+    "idEmpleado": "1"
+  },
+  {
+    "id": 2,
+    "cliente": "2",
+    "descripcion": "Milkshake",
+    "precio": "8500",
+    "plataforma": "Rappi",
+    "idEmpleado": "2"
+  },
+  {
+    "id": 3,
+    "cliente": "3",
+    "descripcion": "Hamburguesa y Papas Fritas",
+    "precio": "12500",
+    "plataforma": "Pedidos Ya",
+    "idEmpleado": "3"
+  },
+  {
+    "id": 4,
+    "cliente": "4",
+    "descripcion": "Cerveza Artesanal",
+    "precio": "10500",
+    "plataforma": "Sabor Urbano",
+    "idEmpleado": "4"
+  }
+]
