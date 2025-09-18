@@ -1,27 +1,22 @@
 [
   {
-    "id": 3,
+    "id": 1,
+    "rol": "Administrador General",
+    "area": "Administración"
+  },
+  {
+    "id": 2,
     "rol": "Cajero",
-    "area": "caja"
+    "area": "Caja"
   },
   {
-    "id": null,
-    "rol": "erfefefef",
-    "area": "efefef"
+    "id": 3,
+    "rol": "Cocinero",
+    "area": "Cocina"
   },
   {
-    "id": null,
-    "rol": "fefef",
-    "area": "efefef"
-  },
-  {
-    "id": null,
-    "rol": "dsdsds",
-    "area": "dsds"
-  },
-  {
-    "id": null,
-    "rol": "ffwfw",
-    "area": "fwfw"
+    "id": 4,
+    "rol": "Asistente",
+    "area": "Pedidos"
   }
 ]

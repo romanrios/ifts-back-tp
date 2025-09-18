@@ -59,9 +59,9 @@ function deleteEmpleado(req, res) {
     const eliminado = remove(id);
 
     if (!eliminado) {
-        return res.status(404).json({ mensaje: "Empleado no encontrado" });
+        res.status(404).render("error", { mensaje: "Empleado no encontrado" });
     }
-    res.json({ mensaje: "Empleado eliminado", empleado: eliminado });
+    res.redirect("/empleados");
 }
 
 module.exports = { getEmpleados, getEmpleadoBorrar, getEmpleadoById, addEmpleado, updateEmpleado, patchEmpleado, deleteEmpleado };

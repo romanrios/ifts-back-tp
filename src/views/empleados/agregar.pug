@@ -3,9 +3,6 @@ extends ../layout
 block content
   h2.mb-3 Agregar Nuevo Empleado
   form(action="/empleados/agregar" method="POST")
-    //- .mb-3
-    //-   label.form-label(for="id") ID del Empleado
-    //-   input.form-control(type="number" name="id" id="id" required)
     .mb-3
       label.form-label(for="rol") Rol
       input.form-control(type="text" name="rol" id="rol" placeholder="Ej: Cocinero" required)
