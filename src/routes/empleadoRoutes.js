@@ -19,7 +19,7 @@ router.get("/:id/borrar", getEmpleadoBorrar);
 router.get("/:id", getEmpleadoById);
 router.post("/agregar", addEmpleado);
 router.put("/:id", updateEmpleado);
-// router.patch("/:id", patchEmpleado);
+router.patch("/:id", patchEmpleado);
 router.delete("/:id", deleteEmpleado);
 
 module.exports = router;
