@@ -5,6 +5,10 @@ function getEmpleados(req, res) {
     res.render("empleados/index", { empleados: empleados });
 }
 
+function getEmpleadoAgregar(req, res) {
+    res.render('empleados/agregar')
+}
+
 function getEmpleadoEditar(req, res) {
     const { id } = req.params;
     const empleados = getAll();
@@ -43,18 +47,18 @@ function addEmpleado(req, res) {
 }
 
 function updateEmpleado(req, res) {
-  const { id } = req.params;
-  const { rol, area } = req.body;
-  const actualizado = update(id, rol, area);
+    const { id } = req.params;
+    const { rol, area } = req.body;
+    const actualizado = update(id, rol, area);
 
-  if (!actualizado) return res.status(404).render("error", { mensaje: "Empleado no encontrado" });
+    if (!actualizado) return res.status(404).render("error", { mensaje: "Empleado no encontrado" });
 
-  // Devuelve JSON si la petición lo solicita, si no redirige
-  if (req.xhr || (req.headers.accept?.includes('json'))) {
-    return res.json({ mensaje: "Empleado actualizado", empleado: actualizado });
-  }
+    // Devuelve JSON si la petición lo solicita, si no redirige
+    if (req.xhr || (req.headers.accept?.includes('json'))) {
+        return res.json({ mensaje: "Empleado actualizado", empleado: actualizado });
+    }
 
-  return res.redirect("/empleados");
+    return res.redirect("/empleados");
 }
 
 
@@ -77,4 +81,4 @@ function deleteEmpleado(req, res) {
     res.redirect("/empleados");
 }
 
-module.exports = { getEmpleados, getEmpleadoBorrar, getEmpleadoEditar, getEmpleadoById, addEmpleado, updateEmpleado, patchEmpleado, deleteEmpleado };
+module.exports = { getEmpleados, getEmpleadoAgregar, getEmpleadoBorrar, getEmpleadoEditar, getEmpleadoById, addEmpleado, updateEmpleado, patchEmpleado, deleteEmpleado };

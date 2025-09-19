@@ -14,6 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride('_method'));
+
+// Rutas
 app.use("/", indexRoutes);
 app.use("/pedidos", pedidoRoutes);
 app.use("/empleados", empleadoRoutes);
