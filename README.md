@@ -83,11 +83,20 @@ src/
    npm install
    ```
 
-3. Ejecutar en modo desarrollo:
+3. Ejecutar la aplicación:
 
-   ```bash
-   npm run dev
-   ```
+   - Modo desarrollo (Nodemon):
+     
+     ```bash
+     npm run dev
+     ```
+
+   - Modo producción:
+     
+     ```bash
+     npm start
+     ```
+
 
 4. Abrir en el navegador:
 
