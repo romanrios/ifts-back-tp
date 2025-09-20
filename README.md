@@ -14,7 +14,7 @@ IFTS N° 29 | Año 2025 | Comisión A | Grupo 11
 ## Descripción
 
 Este proyecto corresponde al **Trabajo Integrador de Desarrollo Web Backend** realizado en el Instituto de Formación Técnica Superior N° 29.
-El objetivo es construir una aplicación backend con **Express.js** que gestione empleados y pedidos, utilizando **Pug** como motor de plantillas para las vistas.
+Se desarrolló en base al caso seleccionado del restaurante **“Sabor Urbano”**, con el objetivo de construir una aplicación backend en **Express.js** que permita gestionar empleados y pedidos, utilizando **Pug** como motor de plantillas para las vistas.
 
 ---
 
