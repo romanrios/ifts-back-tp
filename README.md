@@ -1,18 +1,107 @@
-# TP - Proyecto en Equipo:
+# Trabajo Integrador Desarrollo Web Backend
 
-**IFTS · Backend · Grupo 11**
+IFTS N° 29 | Año 2025 | Comisión A | Grupo 11
 
-## Integrantes:
+## Integrantes
 
-- Córdoba, Daniel Ignacio
-- Giménez, Mariela Belén
-- Lucchelli, Eugenia
-- Ríos, Román
+* Córdoba, Daniel Ignacio
+* Giménez, Mariela Belén
+* Lucchelli, Eugenia
+* Ríos, Román
 
-## Descripción del trabajo:
+---
 
-Se basa en la hamburguesería "Sabor Urbano"
+## Descripción
 
-En este repositorio simulamos el CRUD de un pedido
+Este proyecto corresponde al **Trabajo Integrador de Desarrollo Web Backend** realizado en el Instituto de Formación Técnica Superior N° 29.
+El objetivo es construir una aplicación backend con **Express.js** que gestione empleados y pedidos, utilizando **Pug** como motor de plantillas para las vistas.
 
-Creamos algunos ejemplos "hardcodeados" en la carpeta data para permitir el test en Thunder Client
+---
+
+## Tecnologías utilizadas
+
+* [Node.js](https://nodejs.org/)
+* [Express.js](https://expressjs.com/)
+* [Pug](https://pugjs.org/)
+* [Method-Override](https://www.npmjs.com/package/method-override)
+* [Bootstrap](https://getbootstrap.com/)
+* [Nodemon](https://nodemon.io/) (entorno de desarrollo)
+
+---
+
+## Estructura del proyecto
+
+```
+src/
+│
+├── controllers/         # Controladores de la lógica de negocio
+│   ├── empleadosController.js
+│   └── pedidosController.js
+│
+├── data/                # Archivos de datos en formato JSON
+│   ├── empleados.json
+│   └── pedidos.json
+│
+├── middlewares/         # Middlewares personalizados
+│   └── errorHandler.js
+│
+├── models/              # Modelos para manejar la información
+│   ├── EmpleadosModel.js
+│   └── PedidosModel.js
+│
+├── routes/              # Definición de rutas
+│   ├── empleadoRoutes.js
+│   ├── indexRoutes.js
+│   └── pedidoRoutes.js
+│
+├── views/               # Vistas Pug
+│   ├── empleados/
+│   ├── pedidos/
+│   ├── error.pug
+│   ├── index.pug
+│   └── layout.pug
+│
+└── index.js             # Punto de entrada de la aplicación
+```
+
+---
+
+## Instalación y ejecución
+
+1. Clonar el repositorio:
+
+   ```bash
+   git clone https://github.com/romanrios/ifts-back-tp.git
+   cd back
+   ```
+
+2. Instalar dependencias:
+
+   ```bash
+   npm install
+   ```
+
+3. Ejecutar en modo desarrollo:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Abrir en el navegador:
+
+   ```
+   http://localhost:3000
+   ```
+
+---
+
+
+## Funcionalidades principales
+
+* Gestión de empleados.
+* Gestión de pedidos.
+* Renderizado de vistas dinámicas con **Pug**.
+* Manejo de errores mediante **middlewares personalizados**.
+
+---
+
