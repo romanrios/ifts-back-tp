@@ -109,10 +109,16 @@ src/
 
 ## Funcionalidades principales
 
-* Gestión de empleados.
-* Gestión de pedidos.
+* **Gestión de empleados.**
+   - Crear, listar, editar y eliminar empleados.  
+   - Campos: `id`, `rol`, `área`
+* **Gestión de pedidos.**
+   - Crear, listar, editar y eliminar pedidos.  
+   - Campos: `id`, `cliente`, `descripción`, `precio`, `plataforma`, `idEmpleado`  
+   - Relación: cada pedido se asigna a un empleado existente.
 * Renderizado de vistas dinámicas con **Pug**.
 * Manejo de errores mediante **middlewares personalizados**.
+
 
 ---
 
