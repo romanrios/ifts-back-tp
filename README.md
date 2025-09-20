@@ -72,7 +72,7 @@ src/
 
    ```bash
    git clone https://github.com/romanrios/ifts-back-tp.git
-   cd back
+   cd ifts-back-tp
    ```
 
 2. Instalar dependencias:
