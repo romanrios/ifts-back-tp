@@ -2,6 +2,8 @@
 
 IFTS N° 29 | Año 2025 | Comisión A | Grupo 11
 
+<img width="1211" height="594" alt="07 pedidos" src="https://github.com/user-attachments/assets/8a750a02-70e9-4f39-bd83-f3923acfd7c5" />
+
 ## Integrantes
 
 * Córdoba, Daniel Ignacio
