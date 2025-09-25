@@ -1,6 +1,5 @@
-const express = require("express");
-const router = express.Router();
-const {
+import express from "express";
+import {
     getPedidos,
     getPedidoAgregar,
     getPedidoEditar,
@@ -10,7 +9,9 @@ const {
     updatePedido,
     patchPedido,
     deletePedido,
-} = require("../controllers/pedidosController");
+} from "../controllers/pedidosController.js";
+
+const router = express.Router();
 
 router.get("/", getPedidos);
 router.get("/agregar", getPedidoAgregar);
@@ -22,4 +23,4 @@ router.put("/:id", updatePedido);
 router.patch("/:id", patchPedido);
 router.delete("/:id", deletePedido);
 
-module.exports = router;
+export default router;

@@ -1,5 +1,5 @@
-const { getAll, add, update, patch, remove } = require("../models/PedidosModel");
-const { getAll: getEmpleados } = require("../models/EmpleadosModel");
+import { getAll, add, update, patch, remove } from "../models/PedidosModel.js";
+import { getAll as getEmpleados } from "../models/EmpleadosModel.js";
 
 function getPedidos(req, res) {
     const pedidos = getAll();
@@ -79,4 +79,4 @@ function deletePedido(req, res) {
     res.redirect("/pedidos");
 }
 
-module.exports = { getPedidos, getPedidoAgregar, getPedidoEditar, getPedidoBorrar, getPedidoById, addPedido, updatePedido, patchPedido, deletePedido };
+export { getPedidos, getPedidoAgregar, getPedidoEditar, getPedidoBorrar, getPedidoById, addPedido, updatePedido, patchPedido, deletePedido };

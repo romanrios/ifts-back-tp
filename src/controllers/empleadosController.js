@@ -1,4 +1,4 @@
-const { getAll, add, update, patch, remove } = require("../models/EmpleadosModel");
+import { getAll, add, update, patch, remove } from "../models/EmpleadosModel.js";
 
 function getEmpleados(req, res) {
     const empleados = getAll();
@@ -81,4 +81,4 @@ function deleteEmpleado(req, res) {
     res.redirect("/empleados");
 }
 
-module.exports = { getEmpleados, getEmpleadoAgregar, getEmpleadoBorrar, getEmpleadoEditar, getEmpleadoById, addEmpleado, updateEmpleado, patchEmpleado, deleteEmpleado };
+export { getEmpleados, getEmpleadoAgregar, getEmpleadoBorrar, getEmpleadoEditar, getEmpleadoById, addEmpleado, updateEmpleado, patchEmpleado, deleteEmpleado };

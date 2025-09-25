@@ -1,6 +1,5 @@
-const express = require("express");
-const router = express.Router();
-const {
+import express from "express";
+import {
     getEmpleados,
     getEmpleadoAgregar,
     getEmpleadoEditar,
@@ -10,7 +9,9 @@ const {
     updateEmpleado,
     patchEmpleado,
     deleteEmpleado
-} = require("../controllers/empleadosController");
+} from "../controllers/empleadosController.js";
+
+const router = express.Router();
 
 router.get("/", getEmpleados);
 router.get("/agregar", getEmpleadoAgregar);
@@ -22,6 +23,6 @@ router.put("/:id", updateEmpleado);
 router.patch("/:id", patchEmpleado);
 router.delete("/:id", deleteEmpleado);
 
-module.exports = router;
+export default router;
 
 

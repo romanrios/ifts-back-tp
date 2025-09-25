@@ -1,11 +1,16 @@
 // Imports
-const express = require("express");
-const methodOverride = require('method-override');
-const path = require("path");
-const indexRoutes = require('./routes/indexRoutes.js');
-const pedidoRoutes = require('./routes/pedidoRoutes.js');
-const empleadoRoutes = require('./routes/empleadoRoutes.js');
-const { notFoundHandler, errorHandler } = require("./middlewares/errorHandler.js");
+import express from "express";
+import methodOverride from 'method-override';
+import path from "path";
+import { fileURLToPath } from 'url';
+import indexRoutes from './routes/indexRoutes.js';
+import pedidoRoutes from './routes/pedidoRoutes.js';
+import empleadoRoutes from './routes/empleadoRoutes.js';
+import { notFoundHandler, errorHandler } from "./middlewares/errorHandler.js";
+
+// ES modules equivalent of __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Inicialización de la app
 const app = express();
