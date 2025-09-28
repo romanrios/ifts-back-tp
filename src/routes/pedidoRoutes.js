@@ -1,26 +1,16 @@
 import express from "express";
-import {
-    getPedidos,
-    getPedidoAgregar,
-    getPedidoEditar,
-    getPedidoBorrar,
-    getPedidoById,
-    addPedido,
-    updatePedido,
-    patchPedido,
-    deletePedido,
-} from "../controllers/pedidosController.js";
+import * as ctrl from "../controllers/pedidosController.js";
 
 const router = express.Router();
 
-router.get("/", getPedidos);
-router.get("/agregar", getPedidoAgregar);
-router.get("/:id/editar", getPedidoEditar);
-router.get("/:id/borrar", getPedidoBorrar);
-router.get("/:id", getPedidoById);
-router.post("/agregar", addPedido);
-router.put("/:id", updatePedido);
-router.patch("/:id", patchPedido);
-router.delete("/:id", deletePedido);
+router.get("/", ctrl.getPedidos);
+router.get("/agregar", ctrl.getPedidoAgregar);
+router.get("/:id/editar", ctrl.getPedidoEditar);
+router.get("/:id/borrar", ctrl.getPedidoBorrar);
+router.get("/:id", ctrl.getPedidoById);
+router.post("/agregar", ctrl.addPedido);
+router.put("/:id", ctrl.updatePedido);
+router.patch("/:id", ctrl.patchPedido);
+router.delete("/:id", ctrl.deletePedido);
 
 export default router;

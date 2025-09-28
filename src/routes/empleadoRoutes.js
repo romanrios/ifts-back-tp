@@ -1,27 +1,17 @@
 import express from "express";
-import {
-    getEmpleados,
-    getEmpleadoAgregar,
-    getEmpleadoEditar,
-    getEmpleadoBorrar,
-    getEmpleadoById,
-    addEmpleado,
-    updateEmpleado,
-    patchEmpleado,
-    deleteEmpleado
-} from "../controllers/empleadosController.js";
+import * as ctrl from "../controllers/empleadosController.js"
 
 const router = express.Router();
 
-router.get("/", getEmpleados);
-router.get("/agregar", getEmpleadoAgregar);
-router.get("/:id/editar", getEmpleadoEditar);
-router.get("/:id/borrar", getEmpleadoBorrar);
-router.get("/:id", getEmpleadoById);
-router.post("/agregar", addEmpleado);
-router.put("/:id", updateEmpleado);
-router.patch("/:id", patchEmpleado);
-router.delete("/:id", deleteEmpleado);
+router.get("/", ctrl.getEmpleados);
+router.get("/agregar", ctrl.getEmpleadoAgregar);
+router.get("/:id/editar", ctrl.getEmpleadoEditar);
+router.get("/:id/borrar", ctrl.getEmpleadoBorrar);
+router.get("/:id", ctrl.getEmpleadoById);
+router.post("/agregar", ctrl.addEmpleado);
+router.put("/:id", ctrl.updateEmpleado);
+router.patch("/:id", ctrl.patchEmpleado);
+router.delete("/:id", ctrl.deleteEmpleado);
 
 export default router;
 
