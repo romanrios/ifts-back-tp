@@ -9,17 +9,15 @@ block content
     table.table.table-bordered.table-sm
       thead
         tr
-          th ID
           th Rol
           th Área
-          th Acciones
+          th.acciones Acciones
       tbody
         each empleado in empleados
           tr
-            td= empleado._id
-            td= empleado.rol
-            td= empleado.area
-            td.d-flex.gap-1.flex-wrap
+            td(style="vertical-align: middle;")= empleado.rol
+            td(style="vertical-align: middle;")= empleado.area
+            td.acciones.d-flex.gap-1.align-items-center(style="white-space: nowrap;")
               a.btn.btn-sm.btn-light(href=`/empleados/${empleado._id}` title="Ver") 
                 i(class="bi-eye fs-5") 
               a.btn.btn-sm.btn-light(href=`/empleados/${empleado._id}/editar` title="Editar") 

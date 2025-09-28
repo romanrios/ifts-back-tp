@@ -15,10 +15,20 @@ block content
       input.form-control(type="number" name="precio" id="precio" value=pedido.precio required)
     .mb-3
       label.form-label(for="plataforma") Plataforma
-      input.form-control(type="text" name="plataforma" id="plataforma" value=pedido.plataforma required)
+      select.form-select(name="plataforma" id="plataforma" required)
+        option(value="" disabled) Selecciona una plataforma
+        option(value="Sabor Urbano" selected=pedido.plataforma=="Sabor Urbano") Sabor Urbano
+        option(value="Rappi" selected=pedido.plataforma=="Rappi") Rappi
+        option(value="Pedidos Ya" selected=pedido.plataforma=="Pedidos Ya") Pedidos Ya
     .mb-3
-      label.form-label(for="idEmpleado") ID Empleado
-      input.form-control(type="text" name="idEmpleado" id="idEmpleado" value=pedido.idEmpleado._id || pedido.idEmpleado required)
+      label.form-label(for="idEmpleado") Empleado asignado
+      select.form-select(name="idEmpleado" id="idEmpleado" required)
+        option(value="" disabled) Selecciona un empleado
+        each empleado in empleados
+          option(
+            value=empleado._id
+            selected=(pedido.idEmpleado && empleado._id==pedido.idEmpleado._id)
+          ) #{empleado._id} - #{empleado.rol} (#{empleado.area})
     .d-flex.gap-2
       button.btn.btn-primary(type="submit") Guardar cambios
       a.btn.btn-secondary(href="/pedidos") Cancelar

@@ -68,21 +68,6 @@ async function update(id, rol, area) {
   }
 }
 
-// Actualizar parcialmente un empleado
-async function patch(id, datosParciales) {
-  try {
-    const empleadoActualizado = await Empleado.findByIdAndUpdate(
-      id,
-      datosParciales,
-      { new: true, runValidators: true }
-    );
-    return empleadoActualizado;
-  } catch (error) {
-    console.error('Error al actualizar parcialmente empleado:', error);
-    throw error;
-  }
-}
-
 // Eliminar empleado
 async function remove(id) {
   try {
@@ -94,11 +79,10 @@ async function remove(id) {
   }
 }
 
-export {
+export default {
   getAll,
   getById,
   add,
   update,
-  patch,
   remove
 };

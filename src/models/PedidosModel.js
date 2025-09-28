@@ -99,26 +99,6 @@ async function update(id, { cliente, descripcion, precio, plataforma, idEmpleado
   }
 }
 
-// Actualizar parcialmente un pedido
-async function patch(id, datosParciales) {
-  try {
-    // Convertir precio a número si está presente
-    if (datosParciales.precio) {
-      datosParciales.precio = parseFloat(datosParciales.precio);
-    }
-    
-    const pedidoActualizado = await Pedido.findByIdAndUpdate(
-      id,
-      datosParciales,
-      { new: true, runValidators: true }
-    ).populate('idEmpleado', 'rol area');
-    return pedidoActualizado;
-  } catch (error) {
-    console.error('Error al actualizar parcialmente pedido:', error);
-    throw error;
-  }
-}
-
 // Eliminar pedido
 async function remove(id) {
   try {
@@ -130,11 +110,10 @@ async function remove(id) {
   }
 }
 
-export {
+export default {
   getAll,
   getById,
   add,
   update,
-  patch,
   remove
 };

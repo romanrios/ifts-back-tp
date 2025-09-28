@@ -41,7 +41,7 @@ app.use(notFoundHandler);   // 404 ruta no encontrada
 app.use(errorHandler);      // errores generales
 
 // Inicio del servidor
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
 

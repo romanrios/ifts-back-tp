@@ -10,7 +10,6 @@ router.get("/:id/borrar", ctrl.getPedidoBorrar);
 router.get("/:id", ctrl.getPedidoById);
 router.post("/agregar", ctrl.addPedido);
 router.put("/:id", ctrl.updatePedido);
-router.patch("/:id", ctrl.patchPedido);
 router.delete("/:id", ctrl.deletePedido);
 
 export default router;

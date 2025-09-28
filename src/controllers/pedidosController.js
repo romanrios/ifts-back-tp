@@ -1,9 +1,17 @@
-import { getAll, getById, add, update, patch, remove } from "../models/PedidosModel.js";
-import { getAll as getEmpleados } from "../models/EmpleadosModel.js";
+import model from "../models/PedidosModel.js";
+import empleadosModel from "../models/EmpleadosModel.js";
+
+// IDs de pedidos de muestra (bloqueados)
+const SAMPLE_PEDIDO_IDS = [
+    "68d964a1e32ff7a7ffa5f8fa",
+    "68d964bde32ff7a7ffa5f905",
+    "68d9651ac0ee128f815e9081",
+    "68d974a3ea326e08fdb56afe"
+];
 
 async function getPedidos(req, res) {
     try {
-        const pedidos = await getAll();
+        const pedidos = await model.getAll();
         res.render("pedidos/index", { pedidos: pedidos });
     } catch (error) {
         console.error('Error en getPedidos:', error);
@@ -13,7 +21,7 @@ async function getPedidos(req, res) {
 
 async function getPedidoAgregar(req, res) {
     try {
-        const empleados = await getEmpleados();
+        const empleados = await empleadosModel.getAll();
         res.render("pedidos/agregar", { empleados });
     } catch (error) {
         console.error('Error en getPedidoAgregar:', error);
@@ -24,21 +32,25 @@ async function getPedidoAgregar(req, res) {
 async function getPedidoEditar(req, res) {
     try {
         const { id } = req.params;
-        const pedido = await getById(id);
+        const pedido = await model.getById(id);
         if (!pedido) {
             return res.status(404).render("error", { mensaje: "Pedido no encontrado" });
         }
-        res.render("pedidos/editar", { pedido });
+
+        const empleados = await empleadosModel.getAll();
+
+        res.render("pedidos/editar", { pedido, empleados });
     } catch (error) {
         console.error('Error en getPedidoEditar:', error);
         res.status(500).render("error", { mensaje: "Error al obtener pedido" });
     }
 }
 
+
 async function getPedidoBorrar(req, res) {
     try {
         const { id } = req.params;
-        const pedido = await getById(id);
+        const pedido = await model.getById(id);
         if (!pedido) {
             return res.status(404).render('error', { mensaje: 'Pedido no encontrado' });
         }
@@ -52,7 +64,7 @@ async function getPedidoBorrar(req, res) {
 async function getPedidoById(req, res) {
     try {
         const { id } = req.params;
-        const pedido = await getById(id);
+        const pedido = await model.getById(id);
 
         if (!pedido) {
             return res.status(404).render("error", { mensaje: "Pedido no encontrado" });
@@ -67,7 +79,7 @@ async function getPedidoById(req, res) {
 async function addPedido(req, res) {
     try {
         const { cliente, descripcion, precio, plataforma, idEmpleado } = req.body;
-        await add({ cliente, descripcion, precio, plataforma, idEmpleado });
+        await model.add({ cliente, descripcion, precio, plataforma, idEmpleado });
         res.redirect("/pedidos");
     } catch (error) {
         console.error('Error en addPedido:', error);
@@ -79,12 +91,19 @@ async function addPedido(req, res) {
 async function updatePedido(req, res) {
     try {
         const { id } = req.params;
+
+        // Evitar edición de pedidos de muestra
+        if (SAMPLE_PEDIDO_IDS.includes(id)) {
+            return res.status(403).render("error", { mensaje: "Este pedido es de muestra y no se puede modificar." });
+        }
+
         const { cliente, descripcion, precio, plataforma, idEmpleado } = req.body;
-        const actualizado = await update(id, { cliente, descripcion, precio, plataforma, idEmpleado });
+        const actualizado = await model.update(id, { cliente, descripcion, precio, plataforma, idEmpleado });
 
         if (!actualizado) {
             return res.status(404).render("error", { mensaje: "Pedido no encontrado" });
         }
+
         res.redirect("/pedidos");
     } catch (error) {
         console.error('Error en updatePedido:', error);
@@ -92,25 +111,17 @@ async function updatePedido(req, res) {
     }
 }
 
-async function patchPedido(req, res) {
-    try {
-        const { id } = req.params;
-        const actualizado = await patch(id, req.body);
-
-        if (!actualizado) {
-            return res.status(404).json({ mensaje: "Pedido no encontrado" });
-        }
-        res.json({ mensaje: "Pedido modificado parcialmente", pedido: actualizado });
-    } catch (error) {
-        console.error('Error en patchPedido:', error);
-        res.status(500).json({ mensaje: "Error al actualizar pedido" });
-    }
-}
 
 async function deletePedido(req, res) {
     try {
         const { id } = req.params;
-        const eliminado = await remove(id);
+
+        // Evitar borrado de pedidos de muestra
+        if (SAMPLE_PEDIDO_IDS.includes(id)) {
+            return res.status(403).render("error", { mensaje: "Este pedido es de muestra y no se puede modificar." });
+        }
+
+        const eliminado = await model.remove(id);
 
         if (!eliminado) {
             return res.status(404).render("error", { mensaje: "Pedido no encontrado" });
@@ -122,4 +133,4 @@ async function deletePedido(req, res) {
     }
 }
 
-export default { getPedidos, getPedidoAgregar, getPedidoEditar, getPedidoBorrar, getPedidoById, addPedido, updatePedido, patchPedido, deletePedido };
+export default { getPedidos, getPedidoAgregar, getPedidoEditar, getPedidoBorrar, getPedidoById, addPedido, updatePedido, deletePedido };

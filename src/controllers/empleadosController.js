@@ -1,8 +1,15 @@
-import { getAll, getById, add, update, patch, remove } from "../models/EmpleadosModel.js";
+import model from "../models/EmpleadosModel.js";
+
+const SAMPLE_EMPLOYEE_IDS = [
+    "68d94e7b0591cac6ca6042b7",
+    "68d94e7b0591cac6ca6042b8",
+    "68d94e7b0591cac6ca6042b9",
+    "68d97482ea326e08fdb56af5"
+];
 
 async function getEmpleados(req, res) {
     try {
-        const empleados = await getAll();
+        const empleados = await model.getAll();
         res.render("empleados/index", { empleados: empleados });
     } catch (error) {
         console.error('Error en getEmpleados:', error);
@@ -17,7 +24,7 @@ function getEmpleadoAgregar(req, res) {
 async function getEmpleadoEditar(req, res) {
     try {
         const { id } = req.params;
-        const empleado = await getById(id);
+        const empleado = await model.getById(id);
         if (!empleado) {
             return res.status(404).render("error", { mensaje: "Empleado no encontrado" });
         }
@@ -31,7 +38,7 @@ async function getEmpleadoEditar(req, res) {
 async function getEmpleadoBorrar(req, res) {
     try {
         const { id } = req.params;
-        const empleado = await getById(id);
+        const empleado = await model.getById(id);
         if (!empleado) {
             return res.status(404).render('error', { mensaje: 'Empleado no encontrado' });
         }
@@ -45,7 +52,7 @@ async function getEmpleadoBorrar(req, res) {
 async function getEmpleadoById(req, res) {
     try {
         const { id } = req.params;
-        const empleado = await getById(id);
+        const empleado = await model.getById(id);
         if (!empleado) {
             return res.status(404).render("error", { mensaje: "Empleado no encontrado" });
         }
@@ -59,7 +66,7 @@ async function getEmpleadoById(req, res) {
 async function addEmpleado(req, res) {
     try {
         const { rol, area } = req.body;
-        await add(rol, area);
+        await model.add(rol, area);
         res.redirect("/empleados");
     } catch (error) {
         console.error('Error en addEmpleado:', error);
@@ -71,7 +78,13 @@ async function updateEmpleado(req, res) {
     try {
         const { id } = req.params;
         const { rol, area } = req.body;
-        const actualizado = await update(id, rol, area);
+
+        // Evitar edición de muestras
+        if (SAMPLE_EMPLOYEE_IDS.includes(id)) {
+            return res.status(403).render("error", { mensaje: "Este empleado es de muestra y no se puede modificar." });
+        }
+
+        const actualizado = await model.update(id, rol, area);
 
         if (!actualizado) {
             return res.status(404).render("error", { mensaje: "Empleado no encontrado" });
@@ -89,27 +102,22 @@ async function updateEmpleado(req, res) {
     }
 }
 
-async function patchEmpleado(req, res) {
-    try {
-        const { id } = req.params;
-        const actualizado = await patch(id, req.body);
-        if (!actualizado) {
-            return res.status(404).json({ mensaje: "Empleado no encontrado" });
-        }
-        res.json({ mensaje: "Empleado modificado parcialmente", empleado: actualizado });
-    } catch (error) {
-        console.error('Error en patchEmpleado:', error);
-        res.status(500).json({ mensaje: "Error al actualizar empleado" });
-    }
-}
 
 async function deleteEmpleado(req, res) {
     try {
         const { id } = req.params;
-        const eliminado = await remove(id);
+
+        // Evitar borrado de muestras
+        if (SAMPLE_EMPLOYEE_IDS.includes(id)) {
+            return res.status(403).render("error", { mensaje: "Este empleado es de muestra y no se puede modificar." });
+        }
+
+        const eliminado = await model.remove(id);
+
         if (!eliminado) {
             return res.status(404).render("error", { mensaje: "Empleado no encontrado" });
         }
+
         res.redirect("/empleados");
     } catch (error) {
         console.error('Error en deleteEmpleado:', error);
@@ -117,4 +125,5 @@ async function deleteEmpleado(req, res) {
     }
 }
 
-export default { getEmpleados, getEmpleadoAgregar, getEmpleadoBorrar, getEmpleadoEditar, getEmpleadoById, addEmpleado, updateEmpleado, patchEmpleado, deleteEmpleado };
+
+export default { getEmpleados, getEmpleadoAgregar, getEmpleadoBorrar, getEmpleadoEditar, getEmpleadoById, addEmpleado, updateEmpleado, deleteEmpleado };
