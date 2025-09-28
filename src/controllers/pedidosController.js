@@ -79,4 +79,4 @@ function deletePedido(req, res) {
     res.redirect("/pedidos");
 }
 
-export { getPedidos, getPedidoAgregar, getPedidoEditar, getPedidoBorrar, getPedidoById, addPedido, updatePedido, patchPedido, deletePedido };
+export default { getPedidos, getPedidoAgregar, getPedidoEditar, getPedidoBorrar, getPedidoById, addPedido, updatePedido, patchPedido, deletePedido };

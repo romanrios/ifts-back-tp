@@ -1,5 +1,5 @@
 import express from "express";
-import * as ctrl from "../controllers/pedidosController.js";
+import ctrl from "../controllers/pedidosController.js";
 
 const router = express.Router();
 

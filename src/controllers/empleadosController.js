@@ -81,4 +81,4 @@ function deleteEmpleado(req, res) {
     res.redirect("/empleados");
 }
 
-export { getEmpleados, getEmpleadoAgregar, getEmpleadoBorrar, getEmpleadoEditar, getEmpleadoById, addEmpleado, updateEmpleado, patchEmpleado, deleteEmpleado };
+export default { getEmpleados, getEmpleadoAgregar, getEmpleadoBorrar, getEmpleadoEditar, getEmpleadoById, addEmpleado, updateEmpleado, patchEmpleado, deleteEmpleado };
