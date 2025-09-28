@@ -7,14 +7,18 @@ import indexRoutes from './routes/indexRoutes.js';
 import pedidoRoutes from './routes/pedidoRoutes.js';
 import empleadoRoutes from './routes/empleadoRoutes.js';
 import { notFoundHandler, errorHandler } from "./middlewares/errorHandler.js";
+import dotenv from "dotenv"; 
 
-// ES modules equivalent of __dirname
+// Configuración dotenv
+dotenv.config();
+
+// Obtiene el nombre del archivo actual y su directorio
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Inicialización de la app
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;  // Ahora usamos dotenv
 
 // Configuración PUG
 app.set("view engine", "pug");
