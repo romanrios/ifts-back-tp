@@ -8,9 +8,10 @@ import pedidoRoutes from './routes/pedidoRoutes.js';
 import empleadoRoutes from './routes/empleadoRoutes.js';
 import { notFoundHandler, errorHandler } from "./middlewares/errorHandler.js";
 import dotenv from "dotenv"; 
+import connectDB from "./config/db.js";
 
-// Configuración dotenv
-dotenv.config();
+dotenv.config(); // Inicializamos dotenv
+connectDB();     // Inicializamos la conexión a MongoDB
 
 // Obtiene el nombre del archivo actual y su directorio
 const __filename = fileURLToPath(import.meta.url);
