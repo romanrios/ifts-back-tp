@@ -3,7 +3,7 @@ extends ../layout
 block content
   h2.mb-3 Editar Empleado
 
-  form(action=`/empleados/${empleado.id}?_method=PUT` method="POST")
+  form(action=`/empleados/${empleado._id}?_method=PUT` method="POST")
     .mb-3
       label.form-label(for="rol") Rol
       input.form-control(type="text" name="rol" id="rol" value=empleado.rol required)

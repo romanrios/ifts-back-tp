@@ -25,7 +25,7 @@ block content
       select.form-select(name="idEmpleado" id="idEmpleado" required)
         option(value="" disabled selected) Selecciona un empleado
         each empleado in empleados
-          option(value=empleado.id) #{empleado.id} - #{empleado.rol} (#{empleado.area})
+          option(value=empleado._id) #{empleado._id} - #{empleado.rol} (#{empleado.area})
     .d-flex.gap-2
       button.btn.btn-primary(type="submit") Agregar Pedido
       a.btn.btn-secondary(href="/") Cancelar

@@ -16,13 +16,13 @@ block content
       tbody
         each empleado in empleados
           tr
-            td= empleado.id
+            td= empleado._id
             td= empleado.rol
             td= empleado.area
             td.d-flex.gap-1.flex-wrap
-              a.btn.btn-sm.btn-light(href=`/empleados/${empleado.id}` title="Ver") 
+              a.btn.btn-sm.btn-light(href=`/empleados/${empleado._id}` title="Ver") 
                 i(class="bi-eye fs-5") 
-              a.btn.btn-sm.btn-light(href=`/empleados/${empleado.id}/editar` title="Editar") 
+              a.btn.btn-sm.btn-light(href=`/empleados/${empleado._id}/editar` title="Editar") 
                 i(class="bi-pencil fs-5")
-              a.btn.btn-sm.btn-light(href=`/empleados/${empleado.id}/borrar` title="Borrar") 
+              a.btn.btn-sm.btn-light(href=`/empleados/${empleado._id}/borrar` title="Borrar") 
                 i(class="bi-trash fs-5")

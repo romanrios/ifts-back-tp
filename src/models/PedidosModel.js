@@ -1,83 +1,138 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from 'url';
+import mongoose from "mongoose";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Esquema de Pedido
+const pedidoSchema = new mongoose.Schema({
+  cliente: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  descripcion: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  precio: {
+    type: Number,
+    required: true,
+    min: 0
+  },
+  plataforma: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  idEmpleado: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Empleado',
+    required: true
+  }
+}, {
+  timestamps: true // Agrega createdAt y updatedAt automáticamente
+});
 
-const DB_FILE = path.join(__dirname, "..", "data", "pedidos.json");
+// Modelo de Pedido
+const Pedido = mongoose.model('Pedido', pedidoSchema);
 
-const leerDatos = () => {
-  const data = fs.readFileSync(DB_FILE, 'utf-8');
-  return JSON.parse(data);
-};
-
-const escribirDatos = (data) => {
-  fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
-};
-
-// Obtener todos los ítems
-function getAll() {
-  return leerDatos();
+// Obtener todos los pedidos con información del empleado
+async function getAll() {
+  try {
+    const pedidos = await Pedido.find()
+      .populate('idEmpleado', 'rol area')
+      .sort({ createdAt: 1 });
+    return pedidos;
+  } catch (error) {
+    console.error('Error al obtener pedidos:', error);
+    throw error;
+  }
 }
 
-function add({ cliente, descripcion, precio, plataforma, idEmpleado }) {
-  const pedidos = leerDatos();
-  const ultimoId = pedidos.length > 0 ? pedidos[pedidos.length - 1].id : 0;
-  const nuevoPedido = {
-    id: ultimoId + 1,
-    cliente,
-    descripcion,
-    precio,
-    plataforma,
-    idEmpleado,
-  };
-  pedidos.push(nuevoPedido);
-  escribirDatos(pedidos);
-  return nuevoPedido;
+// Obtener pedido por ID
+async function getById(id) {
+  try {
+    const pedido = await Pedido.findById(id)
+      .populate('idEmpleado', 'rol area');
+    return pedido;
+  } catch (error) {
+    console.error('Error al obtener pedido por ID:', error);
+    throw error;
+  }
+}
+
+// Agregar nuevo pedido
+async function add({ cliente, descripcion, precio, plataforma, idEmpleado }) {
+  try {
+    const nuevoPedido = new Pedido({ 
+      cliente, 
+      descripcion, 
+      precio: parseFloat(precio), 
+      plataforma, 
+      idEmpleado 
+    });
+    const pedidoGuardado = await nuevoPedido.save();
+    return await Pedido.findById(pedidoGuardado._id)
+      .populate('idEmpleado', 'rol area');
+  } catch (error) {
+    console.error('Error al agregar pedido:', error);
+    throw error;
+  }
 }
 
 // Actualizar un pedido completo
-function update(id, { cliente, descripcion, precio, plataforma, idEmpleado }) {
-  const pedidos = leerDatos();
-  const index = pedidos.findIndex(t => t.id === parseInt(id));
-  if (index === -1) return null;
-
-  pedidos[index] = {
-    id: parseInt(id),
-    cliente,
-    descripcion,
-    precio,
-    plataforma,
-    idEmpleado,
-  }; escribirDatos(pedidos);
-  return pedidos[index];
+async function update(id, { cliente, descripcion, precio, plataforma, idEmpleado }) {
+  try {
+    const pedidoActualizado = await Pedido.findByIdAndUpdate(
+      id,
+      { 
+        cliente, 
+        descripcion, 
+        precio: parseFloat(precio), 
+        plataforma, 
+        idEmpleado 
+      },
+      { new: true, runValidators: true }
+    ).populate('idEmpleado', 'rol area');
+    return pedidoActualizado;
+  } catch (error) {
+    console.error('Error al actualizar pedido:', error);
+    throw error;
+  }
 }
 
-// Actualizar parcialmente un pedido 
-function patch(id, datosParciales) {
-  const pedidos = leerDatos();
-  const index = pedidos.findIndex(t => t.id === parseInt(id));
-  if (index === -1) return null;
-
-  pedidos[index] = { ...pedidos[index], ...datosParciales };
-  escribirDatos(pedidos);
-  return pedidos[index];
+// Actualizar parcialmente un pedido
+async function patch(id, datosParciales) {
+  try {
+    // Convertir precio a número si está presente
+    if (datosParciales.precio) {
+      datosParciales.precio = parseFloat(datosParciales.precio);
+    }
+    
+    const pedidoActualizado = await Pedido.findByIdAndUpdate(
+      id,
+      datosParciales,
+      { new: true, runValidators: true }
+    ).populate('idEmpleado', 'rol area');
+    return pedidoActualizado;
+  } catch (error) {
+    console.error('Error al actualizar parcialmente pedido:', error);
+    throw error;
+  }
 }
 
-// Eliminar pedido 
-function remove(id) {
-  const pedidos = leerDatos();
-  const index = pedidos.findIndex(t => t.id === parseInt(id));
-  if (index === -1) return null;
-
-  const eliminado = pedidos.splice(index, 1);
-  escribirDatos(pedidos);
-  return eliminado[0];
+// Eliminar pedido
+async function remove(id) {
+  try {
+    const pedidoEliminado = await Pedido.findByIdAndDelete(id);
+    return pedidoEliminado;
+  } catch (error) {
+    console.error('Error al eliminar pedido:', error);
+    throw error;
+  }
 }
 
 export {
   getAll,
+  getById,
   add,
   update,
   patch,

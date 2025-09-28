@@ -1,76 +1,102 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from 'url';
+import mongoose from "mongoose";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Esquema de Empleado
+const empleadoSchema = new mongoose.Schema({
+  rol: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  area: {
+    type: String,
+    required: true,
+    trim: true
+  }
+}, {
+  timestamps: true // Agrega createdAt y updatedAt automáticamente
+});
 
-const DB_FILE = path.join(__dirname, "..", "data", "empleados.json");
+// Modelo de Empleado
+const Empleado = mongoose.model('Empleado', empleadoSchema);
 
-const leerDatos = () => {
-  const data = fs.readFileSync(DB_FILE, 'utf-8');
-  return JSON.parse(data);
-};
+// Obtener todos los empleados
+async function getAll() {
+  try {
+    const empleados = await Empleado.find().sort({ createdAt: 1 });
+    return empleados;
+  } catch (error) {
+    console.error('Error al obtener empleados:', error);
+    throw error;
+  }
+}
 
-const escribirDatos = (data) => {
-  fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
-};
-
-// Obtener todos los ítems
-function getAll() {
-  return leerDatos();
+// Obtener empleado por ID
+async function getById(id) {
+  try {
+    const empleado = await Empleado.findById(id);
+    return empleado;
+  } catch (error) {
+    console.error('Error al obtener empleado por ID:', error);
+    throw error;
+  }
 }
 
 // Agregar nuevo empleado
-function add(rol, area) {
-  const empleados = leerDatos();
-  const ultimoId = empleados.length > 0 ? empleados[empleados.length - 1].id : 0;
-  const nuevoEmpleado = {
-    id: ultimoId + 1,
-    rol,
-    area,
-  };
-  empleados.push(nuevoEmpleado);
-  escribirDatos(empleados);
-  return nuevoEmpleado;
+async function add(rol, area) {
+  try {
+    const nuevoEmpleado = new Empleado({ rol, area });
+    const empleadoGuardado = await nuevoEmpleado.save();
+    return empleadoGuardado;
+  } catch (error) {
+    console.error('Error al agregar empleado:', error);
+    throw error;
+  }
 }
 
-
 // Actualizar datos de un empleado
-function update(id, rol, area) {
-  const empleados = leerDatos();
-  const index = empleados.findIndex(e => e.id === parseInt(id));
-  if (index === -1) return null;
-
-  empleados[index] = { id: parseInt(id), rol, area };
-  escribirDatos(empleados);
-  return empleados[index];
+async function update(id, rol, area) {
+  try {
+    const empleadoActualizado = await Empleado.findByIdAndUpdate(
+      id,
+      { rol, area },
+      { new: true, runValidators: true }
+    );
+    return empleadoActualizado;
+  } catch (error) {
+    console.error('Error al actualizar empleado:', error);
+    throw error;
+  }
 }
 
 // Actualizar parcialmente un empleado
-function patch(id, datosParciales) {
-  const empleados = leerDatos();
-  const index = empleados.findIndex(e => e.id === parseInt(id));
-  if (index === -1) return null;
-
-  empleados[index] = { ...empleados[index], ...datosParciales };
-  escribirDatos(empleados);
-  return empleados[index];
+async function patch(id, datosParciales) {
+  try {
+    const empleadoActualizado = await Empleado.findByIdAndUpdate(
+      id,
+      datosParciales,
+      { new: true, runValidators: true }
+    );
+    return empleadoActualizado;
+  } catch (error) {
+    console.error('Error al actualizar parcialmente empleado:', error);
+    throw error;
+  }
 }
 
 // Eliminar empleado
-function remove(id) {
-  const pedidos = leerDatos();
-  const index = pedidos.findIndex(t => t.id === parseInt(id));
-  if (index === -1) return null;
-
-  const eliminado = pedidos.splice(index, 1);
-  escribirDatos(pedidos);
-  return eliminado[0];
+async function remove(id) {
+  try {
+    const empleadoEliminado = await Empleado.findByIdAndDelete(id);
+    return empleadoEliminado;
+  } catch (error) {
+    console.error('Error al eliminar empleado:', error);
+    throw error;
+  }
 }
 
 export {
   getAll,
+  getById,
   add,
   update,
   patch,

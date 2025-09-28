@@ -19,16 +19,16 @@ block content
       tbody
         each pedido in pedidos
           tr
-            td= pedido.id
+            td= pedido._id
             td= pedido.cliente
             td= pedido.descripcion
             td= pedido.precio || '-'
             td= pedido.plataforma
-            td= pedido.idEmpleado
+            td= pedido.idEmpleado ? (pedido.idEmpleado.rol ? `${pedido.idEmpleado.rol} (${pedido.idEmpleado.area})` : pedido.idEmpleado) : '-'
             td.d-flex.gap-1.flex-wrap
-              a.btn.btn-sm.btn-light(href=`/pedidos/${pedido.id}` title="Ver") 
+              a.btn.btn-sm.btn-light(href=`/pedidos/${pedido._id}` title="Ver") 
                 i(class="bi-eye fs-5") 
-              a.btn.btn-sm.btn-light(href=`/pedidos/${pedido.id}/editar` title="Editar") 
+              a.btn.btn-sm.btn-light(href=`/pedidos/${pedido._id}/editar` title="Editar") 
                 i(class="bi-pencil fs-5")
-              a.btn.btn-sm.btn-light(href=`/pedidos/${pedido.id}/borrar` title="Borrar") 
+              a.btn.btn-sm.btn-light(href=`/pedidos/${pedido._id}/borrar` title="Borrar") 
                 i(class="bi-trash fs-5")

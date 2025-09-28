@@ -3,10 +3,10 @@ extends ../layout
 block content
   h2 Detalle del Pedido
   ul
-    li ID: #{pedido.id}
+    li ID: #{pedido._id}
     li Cliente: #{pedido.cliente}
     li Descripción: #{pedido.descripcion}
     li Precio: #{pedido.precio || '-'}
     li Plataforma: #{pedido.plataforma}
-    li ID Empleado: #{pedido.idEmpleado}
+    li Empleado: #{pedido.idEmpleado ? (pedido.idEmpleado.rol ? `${pedido.idEmpleado.rol} (${pedido.idEmpleado.area})` : pedido.idEmpleado) : '-'}
   a.btn.btn-secondary.mt-3(href="/pedidos") Volver

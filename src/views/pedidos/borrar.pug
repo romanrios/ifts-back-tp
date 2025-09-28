@@ -6,13 +6,13 @@ block content
   p.mb-2 ¿Eliminar este pedido?  
 
   ul
-    li ID: #{pedido.id}
+    li ID: #{pedido._id}
     li Cliente: #{pedido.cliente}
     li Descripción: #{pedido.descripcion}
     li Precio: #{pedido.precio || '-'}
     li Plataforma: #{pedido.plataforma}
-    li ID Empleado: #{pedido.idEmpleado}
+    li Empleado: #{pedido.idEmpleado ? (pedido.idEmpleado.rol ? `${pedido.idEmpleado.rol} (${pedido.idEmpleado.area})` : pedido.idEmpleado) : '-'}
 
-  form(action=`/pedidos/${pedido.id}?_method=DELETE` method="POST").d-flex.gap-2.mt-3
+  form(action=`/pedidos/${pedido._id}?_method=DELETE` method="POST").d-flex.gap-2.mt-3
     button.btn.btn-danger(type="submit") Sí, borrar
     a.btn.btn-secondary(href="/pedidos") Cancelar

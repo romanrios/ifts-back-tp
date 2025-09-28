@@ -24,10 +24,12 @@ Se desarrolló en base al caso seleccionado del restaurante **“Sabor Urbano”
 
 * [Node.js](https://nodejs.org/)
 * [Express.js](https://expressjs.com/)
+* [MongoDB](https://www.mongodb.com/) con [Mongoose](https://mongoosejs.com/)
 * [Pug](https://pugjs.org/)
 * [Method-Override](https://www.npmjs.com/package/method-override)
 * [Bootstrap](https://getbootstrap.com/)
 * [Nodemon](https://nodemon.io/) (entorno de desarrollo)
+* [dotenv](https://www.npmjs.com/package/dotenv) (variables de entorno)
 
 ---
 
@@ -35,6 +37,9 @@ Se desarrolló en base al caso seleccionado del restaurante **“Sabor Urbano”
 
 ```
 src/
+│
+├── config/              # Configuración de la base de datos
+│   └── db.js
 │
 ├── controllers/         # Controladores de la lógica de negocio
 │   ├── empleadosController.js
@@ -47,7 +52,7 @@ src/
 ├── middlewares/         # Middlewares personalizados
 │   └── errorHandler.js
 │
-├── models/              # Modelos para manejar la información
+├── models/              # Modelos de MongoDB con Mongoose
 │   ├── EmpleadosModel.js
 │   └── PedidosModel.js
 │
@@ -83,7 +88,15 @@ src/
    npm install
    ```
 
-3. Ejecutar la aplicación:
+3. Configurar variables de entorno:
+
+   Crear un archivo `.env` en la raíz del proyecto:
+   ```env
+   PORT=3000
+   MONGO_URI= (connection string de MongoDB)
+   ```
+
+4. Ejecutar la aplicación:
 
    - Modo desarrollo (Nodemon):
      
@@ -97,12 +110,12 @@ src/
      npm start
      ```
 
-
-4. Abrir en el navegador:
+6. Abrir en el navegador:
 
    ```
    http://localhost:3000
    ```
+
 
 ---
 
@@ -111,13 +124,38 @@ src/
 
 * **Gestión de empleados.**
    - Crear, listar, editar y eliminar empleados.  
-   - Campos: `id`, `rol`, `área`
+   - Campos: `_id` (ObjectId), `rol`, `área`
 * **Gestión de pedidos.**
    - Crear, listar, editar y eliminar pedidos.  
-   - Campos: `id`, `cliente`, `descripción`, `precio`, `plataforma`, `idEmpleado`  
-   - Relación: cada pedido se asigna a un empleado existente.
-* Renderizado de vistas dinámicas con **Pug**.
+   - Campos: `_id` (ObjectId), `cliente`, `descripción`, `precio`, `plataforma`, `idEmpleado` (referencia a empleado)
+   - Relación: cada pedido se asigna a un empleado existente mediante referencias de MongoDB.
+* **Base de datos MongoDB** con esquemas definidos y validaciones.
+* * Renderizado de vistas dinámicas con **Pug**.
 * Manejo de errores mediante **middlewares personalizados**.
+* **Interfaz moderna** con Bootstrap 5.
+
+## Base de datos
+
+### Colección: empleados
+```javascript
+{
+  _id: ObjectId,
+  rol: String,
+  area: String
+}
+```
+
+### Colección: pedidos
+```javascript
+{
+  _id: ObjectId,
+  cliente: String,
+  descripcion: String,
+  precio: Number,
+  plataforma: String,
+  idEmpleado: ObjectId (ref: empleados)
+}
+```
 
 
 ---
