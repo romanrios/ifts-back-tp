@@ -7,8 +7,7 @@ block content
 
   ul
     li ID: #{cliente._id}
-    li Rol: #{cliente.rol}
-    li Área: #{cliente.area}
+    li Teléfono: #{cliente.telefono}
 
   form(action=`/clientes/${cliente._id}?_method=DELETE` method="POST").d-flex.gap-2.mt-3
     button.btn.btn-danger(type="submit") Sí, borrar

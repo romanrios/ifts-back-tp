@@ -36,7 +36,7 @@ app.use(methodOverride('_method'));                 // Permite PUT/DELETE desde 
 app.use("/", indexRoutes);
 app.use("/pedidos", pedidoRoutes);
 app.use("/empleados", empleadoRoutes);
-app.use("/clientes", empleadoRoutes);
+app.use("/clientes", clienteRoutes);
 
 // Middlewares de manejo de errores
 app.use(notFoundHandler);   // 404 ruta no encontrada

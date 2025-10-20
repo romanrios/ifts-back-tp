@@ -1,10 +1,10 @@
 import model from "../models/ClientesModel.js";
 
 const SAMPLE_CLIENT_IDS = [
-    "68d94e7b0591cac6ca6042b7",
-    "68d94e7b0591cac6ca6042b8",
-    "68d94e7b0591cac6ca6042b9",
-    "68d97482ea326e08fdb56af5"
+    "68f6b3d0f4ae604d2e8fd822",
+    "68f6c3eff4ae604d2e8fd83c",
+    "68f6c406f4ae604d2e8fd83f",
+    "68f6c434f4ae604d2e8fd842"
 ];
 
 async function getClientes(req, res) {
