@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import indexRoutes from './routes/indexRoutes.js';
 import pedidoRoutes from './routes/pedidoRoutes.js';
 import empleadoRoutes from './routes/empleadoRoutes.js';
+import plataformaRoutes from './routes/plataformaRoutes.js';
 import { notFoundHandler, errorHandler } from "./middlewares/errorHandler.js";
 import dotenv from "dotenv"; 
 import connectDB from "./config/db.js";
@@ -35,6 +36,7 @@ app.use(methodOverride('_method'));                 // Permite PUT/DELETE desde 
 app.use("/", indexRoutes);
 app.use("/pedidos", pedidoRoutes);
 app.use("/empleados", empleadoRoutes);
+app.use('/plataformas', plataformaRoutes);
 
 // Middlewares de manejo de errores
 app.use(notFoundHandler);   // 404 ruta no encontrada

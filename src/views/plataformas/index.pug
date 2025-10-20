@@ -1,0 +1,27 @@
+extends ../layout.pug
+
+block content
+    h2 Listado de Plataformas
+    a.btn.btn-success.mb-3(href="/plataformas/agregar") Nueva Plataforma
+    
+    if plataformas.length
+        table.table.table-striped
+            thead
+                tr
+                    th Nombre
+                    th Tipo
+                    th Comisión (%)
+                    th Creado
+                    th Acciones
+            tbody
+                each plataforma in plataformas
+                    tr
+                        td= plataforma.nombre
+                        td= plataforma.tipo
+                        td= plataforma.comisionPorcentaje + '%'
+                        td= new Date(plataforma.createdAt).toLocaleDateString()
+                        td 
+                            a.btn.btn-sm.btn-info.me-2(href=`/plataformas/${plataforma._id}`) Ver
+                            a.btn.btn-sm.btn-warning(href=`/plataformas/${plataforma._id}/editar`) Editar
+    else
+        p.alert.alert-info No hay plataformas registradas aún. Puedes agregar una con el botón de arriba.

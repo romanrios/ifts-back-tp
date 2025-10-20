@@ -1,5 +1,6 @@
 import model from "../models/PedidosModel.js";
 import empleadosModel from "../models/EmpleadosModel.js";
+import plataformasModel from "../models/PlataformasModel.js";
 
 // IDs de pedidos de muestra (bloqueados)
 const SAMPLE_PEDIDO_IDS = [
@@ -22,7 +23,8 @@ async function getPedidos(req, res) {
 async function getPedidoAgregar(req, res) {
     try {
         const empleados = await empleadosModel.getAll();
-        res.render("pedidos/agregar", { empleados });
+        const plataformas = await plataformasModel.getAll();
+        res.render("pedidos/agregar", { empleados, plataformas });
     } catch (error) {
         console.error('Error en getPedidoAgregar:', error);
         res.status(500).render("error", { mensaje: "Error al obtener empleados" });
@@ -38,8 +40,9 @@ async function getPedidoEditar(req, res) {
         }
 
         const empleados = await empleadosModel.getAll();
+        const plataformas = await plataformasModel.getAll();
 
-        res.render("pedidos/editar", { pedido, empleados });
+        res.render("pedidos/editar", { pedido, empleados, plataformas });
     } catch (error) {
         console.error('Error en getPedidoEditar:', error);
         res.status(500).render("error", { mensaje: "Error al obtener pedido" });

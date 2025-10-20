@@ -18,9 +18,9 @@ const pedidoSchema = new mongoose.Schema({
     min: 0
   },
   plataforma: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Plataforma',
     required: true,
-    trim: true
   },
   idEmpleado: {
     type: mongoose.Schema.Types.ObjectId,
@@ -38,6 +38,7 @@ const Pedido = mongoose.model('Pedido', pedidoSchema);
 async function getAll() {
   const pedidos = await Pedido.find()
     .populate('idEmpleado', 'rol area')
+    .populate('plataforma', 'nombre tipo')
     .sort({ createdAt: 1 });
   return pedidos;
 }
@@ -45,7 +46,8 @@ async function getAll() {
 // Obtener pedido por ID
 async function getById(id) {
   const pedido = await Pedido.findById(id)
-    .populate('idEmpleado', 'rol area');
+    .populate('idEmpleado', 'rol area')
+    .populate('plataforma', 'nombre tipo');
   return pedido;
 }
 
@@ -60,7 +62,8 @@ async function add({ cliente, descripcion, precio, plataforma, idEmpleado }) {
   });
   const pedidoGuardado = await nuevoPedido.save();
   return await Pedido.findById(pedidoGuardado._id)
-    .populate('idEmpleado', 'rol area');
+    .populate('idEmpleado', 'rol area')
+    .populate('plataforma', 'nombre tipo');
 }
 
 // Actualizar un pedido completo
@@ -75,7 +78,8 @@ async function update(id, { cliente, descripcion, precio, plataforma, idEmpleado
       idEmpleado 
     },
     { new: true, runValidators: true }
-  ).populate('idEmpleado', 'rol area');
+  ).populate('idEmpleado', 'rol area')
+   .populate('plataforma', 'nombre tipo');
   return pedidoActualizado;
 }
 
