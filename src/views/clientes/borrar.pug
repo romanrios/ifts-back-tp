@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  h2.mb-3 Confirmar borrado
+
+  p.mb-2 ¿Eliminar este cliente?  
+
+  ul
+    li ID: #{cliente._id}
+    li Rol: #{cliente.rol}
+    li Área: #{cliente.area}
+
+  form(action=`/clientes/${cliente._id}?_method=DELETE` method="POST").d-flex.gap-2.mt-3
+    button.btn.btn-danger(type="submit") Sí, borrar
+    a.btn.btn-secondary(href="/clientes") Cancelar
