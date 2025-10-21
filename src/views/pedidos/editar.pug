@@ -44,9 +44,9 @@ block content
         option(value="" disabled) Selecciona un empleado
         each empleado in empleados
           if pedido.idEmpleado && empleado._id.toString() === pedido.idEmpleado._id.toString()
-            option(value=empleado._id selected)= `${empleado._id} - ${empleado.rol} (${empleado.area})`
+            option(value=empleado._id selected)= `${empleado.rol} (${empleado.area})`
           else
-            option(value=empleado._id)= `${empleado._id} - ${empleado.rol} (${empleado.area})`
+            option(value=empleado._id)= `${empleado.rol} (${empleado.area})`
 
     .d-flex.gap-2
       button.btn.btn-primary(type="submit") Guardar cambios
