@@ -7,6 +7,7 @@ block content
 
   ul
     li ID: #{cliente._id}
+    li Nombre:#{cliente.nombre}
     li Teléfono: #{cliente.telefono}
 
   form(action=`/clientes/${cliente._id}?_method=DELETE` method="POST").d-flex.gap-2.mt-3
