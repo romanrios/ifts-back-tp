@@ -5,8 +5,8 @@ block content
   ul
     li ID: #{pedido._id}
     li Cliente: #{pedido.cliente ? pedido.cliente.nombre + " (" + pedido.cliente.telefono + ")" : '-'}
-    li Producto: #{pedido.producto}
-    li Precio: #{pedido.precio || '-'}
-    li Plataforma: #{pedido.plataforma}
+    li Producto: #{pedido.producto ? pedido.producto.nombre : '-'}
+    li Precio: #{pedido.producto ? "$" + pedido.producto.precio : '-'}
+    li Plataforma: #{pedido.plataforma ? pedido.plataforma.nombre + " (" + pedido.plataforma.tipo + ")" :  '-' }
     li Empleado: #{pedido.idEmpleado ? (pedido.idEmpleado.rol ? `${pedido.idEmpleado.rol} (${pedido.idEmpleado.area})` : pedido.idEmpleado) : '-'}
   a.btn.btn-secondary.mt-3(href="/pedidos") Volver
