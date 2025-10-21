@@ -6,7 +6,13 @@ block content
   form(action=`/pedidos/${pedido._id}?_method=PUT` method="POST")
     .mb-3
       label.form-label(for="cliente") Cliente
-      input.form-control(type="text" name="cliente" id="cliente" value=pedido.cliente required)
+      select.form-select(name="cliente" id="cliente" required)
+        option(value="" disabled) Selecciona un cliente
+        each c in clientes
+          if pedido.cliente && c._id.toString() === pedido.cliente._id.toString()
+            option(value=c._id selected)= `${c.nombre} (${c.telefono})`
+          else
+            option(value=c._id)= `${c.nombre} (${c.telefono})`
     .mb-3
       label.form-label(for="descripcion") Descripción
       input.form-control(type="text" name="descripcion" id="descripcion" value=pedido.descripcion required)

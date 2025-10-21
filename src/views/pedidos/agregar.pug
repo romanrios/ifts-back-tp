@@ -5,8 +5,11 @@ block content
 
   form(action="/pedidos/agregar" method="POST")
     .mb-3
-      label.form-label(for="cliente") ID del Cliente
-      input.form-control(type="text" name="cliente" id="cliente" placeholder="Ej: 1" required)
+      label.form-label(for="cliente") Cliente
+      select.form-select(name="cliente" id="cliente" required)
+        option(value="" disabled selected) Selecciona un cliente
+        each c in clientes
+          option(value=c._id)= `${c.nombre} (${c.telefono})`
     .mb-3
       label.form-label(for="descripcion") Descripción
       input.form-control(type="text" name="descripcion" id="descripcion" placeholder="Ej: Hamburguesa y Papas Fritas" required)
