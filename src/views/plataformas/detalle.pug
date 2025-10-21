@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  h2 Detalle de Plataforma
+  ul
+    li ID: #{plataforma._id}
+    li Nombre: #{plataforma.nombre}
+    li Tipo: #{plataforma.tipo}
+    li Comisión: #{plataforma.comisionPorcentaje}%
+  a.btn.btn-secondary.mt-3(href="/plataformas") Volver
