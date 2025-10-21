@@ -5,7 +5,7 @@ block content
   ul
     li ID: #{pedido._id}
     li Cliente: #{pedido.cliente ? pedido.cliente.nombre + " (" + pedido.cliente.telefono + ")" : '-'}
-    li Descripción: #{pedido.descripcion}
+    li Producto: #{pedido.producto}
     li Precio: #{pedido.precio || '-'}
     li Plataforma: #{pedido.plataforma}
     li Empleado: #{pedido.idEmpleado ? (pedido.idEmpleado.rol ? `${pedido.idEmpleado.rol} (${pedido.idEmpleado.area})` : pedido.idEmpleado) : '-'}

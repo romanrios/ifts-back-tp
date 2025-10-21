@@ -7,10 +7,10 @@ const pedidoSchema = new mongoose.Schema({
     ref: 'Cliente',
     required: true,
   },
-  descripcion: {
-    type: String,
+  producto: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Producto',
     required: true,
-    trim: true
   },
   precio: {
     type: Number,
@@ -40,6 +40,7 @@ async function getAll() {
     .populate('cliente', 'nombre telefono')
     .populate('idEmpleado', 'rol area')
     .populate('plataforma', 'nombre tipo')
+    .populate('producto', 'nombre precio')
     .sort({ createdAt: 1 });
   return pedidos;
 }
@@ -49,15 +50,16 @@ async function getById(id) {
   const pedido = await Pedido.findById(id)
     .populate('cliente', 'nombre telefono')
     .populate('idEmpleado', 'rol area')
-    .populate('plataforma', 'nombre tipo');
+    .populate('plataforma', 'nombre tipo')
+    .populate('producto', 'nombre precio');
   return pedido;
 }
 
 // Agregar nuevo pedido
-async function add({ cliente, descripcion, precio, plataforma, idEmpleado }) {
+async function add({ cliente, producto, precio, plataforma, idEmpleado }) {
   const nuevoPedido = new Pedido({
     cliente,
-    descripcion,
+    producto,
     precio: parseFloat(precio),
     plataforma,
     idEmpleado
@@ -66,16 +68,17 @@ async function add({ cliente, descripcion, precio, plataforma, idEmpleado }) {
   return await Pedido.findById(pedidoGuardado._id)
     .populate('cliente', 'nombre telefono')
     .populate('idEmpleado', 'rol area')
-    .populate('plataforma', 'nombre tipo');
+    .populate('plataforma', 'nombre tipo')
+    .populate('producto', 'nombre precio');
 }
 
 // Actualizar un pedido completo
-async function update(id, { cliente, descripcion, precio, plataforma, idEmpleado }) {
+async function update(id, { cliente, producto, precio, plataforma, idEmpleado }) {
   const pedidoActualizado = await Pedido.findByIdAndUpdate(
     id,
     {
       cliente,
-      descripcion,
+      producto,
       precio: parseFloat(precio),
       plataforma,
       idEmpleado
@@ -84,7 +87,8 @@ async function update(id, { cliente, descripcion, precio, plataforma, idEmpleado
   )
     .populate('cliente', 'nombre telefono')
     .populate('idEmpleado', 'rol area')
-    .populate('plataforma', 'nombre tipo');
+    .populate('plataforma', 'nombre tipo')
+    .populate('producto', 'nombre precio');
   return pedidoActualizado;
 }
 
