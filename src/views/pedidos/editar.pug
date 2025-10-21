@@ -23,9 +23,11 @@ block content
       label.form-label(for="plataforma") Plataforma
       select.form-select(name="plataforma" id="plataforma" required)
         option(value="" disabled) Selecciona una plataforma
-        option(value="Sabor Urbano" selected=pedido.plataforma=="Sabor Urbano") Sabor Urbano
-        option(value="Rappi" selected=pedido.plataforma=="Rappi") Rappi
-        option(value="Pedidos Ya" selected=pedido.plataforma=="Pedidos Ya") Pedidos Ya
+        each p in plataformas
+          if pedido.plataforma && p._id.toString() === pedido.plataforma._id.toString()
+            option(value=p._id selected)= `${p.nombre} (${p.tipo})`
+          else
+            option(value=p._id)= `${p.nombre} (${p.tipo})`
     .mb-3
       label.form-label(for="idEmpleado") Empleado asignado
       select.form-select(name="idEmpleado" id="idEmpleado" required)

@@ -10,7 +10,12 @@ block content
 
     .mb-3
       label.form-label(for="tipo") Tipo
-      input.form-control(type="text" name="tipo" id="tipo" placeholder="Ej: Delivery o Propia" required)
+        select.form-select(name="tipo" id="tipo" required)
+          option(value="" disabled selected) Selecciona un tipo
+          option(value="Externa") Externa
+          option(value="Propia") Propia
+          option(value="Teléfono") Teléfono
+          option(value="Presencial") Presencial
 
     .mb-3
       label.form-label(for="comisionPorcentaje") Comisión (%)

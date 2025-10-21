@@ -10,7 +10,7 @@ const plataformaSchema = new mongoose.Schema({
     },
     tipo: {
         type: String,
-        enum: ['Externa', 'Propia', 'Telefono', 'Presencial'], 
+        enum: ['Externa', 'Propia', 'Teléfono', 'Presencial'], 
         default: 'Externa',
         required: true
     },
