@@ -21,7 +21,7 @@ block content
             td(style="vertical-align: middle;")= pedido.cliente ? `${pedido.cliente.nombre}` : '-'
             td(style="vertical-align: middle; word-break: break-word;")= pedido.descripcion
             td(style="vertical-align: middle;")= pedido.precio || '-'
-            td(style="vertical-align: middle;")= pedido.plataforma
+            td(style="vertical-align: middle;")= pedido.plataforma ? `${pedido.plataforma.nombre}` : '-'
             td(style="vertical-align: middle; word-break: break-word;")= pedido.idEmpleado ? (pedido.idEmpleado.rol ? `${pedido.idEmpleado.rol} (${pedido.idEmpleado.area})` : pedido.idEmpleado) : '-'
             td.acciones
               .d-flex.align-items-center.justify-content-center(style="height:100%; gap:0.25rem; flex-wrap:nowrap; overflow:hidden;")
