@@ -18,7 +18,7 @@ block content
       tbody
         each pedido in pedidos
           tr
-            td(style="vertical-align: middle;")= pedido.cliente
+            td(style="vertical-align: middle;")= pedido.cliente ? `${pedido.cliente.nombre}` : '-'
             td(style="vertical-align: middle; word-break: break-word;")= pedido.descripcion
             td(style="vertical-align: middle;")= pedido.precio || '-'
             td(style="vertical-align: middle;")= pedido.plataforma

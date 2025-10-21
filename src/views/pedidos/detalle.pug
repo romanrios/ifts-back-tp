@@ -4,7 +4,7 @@ block content
   h2 Detalle del Pedido
   ul
     li ID: #{pedido._id}
-    li Cliente: #{pedido.cliente}
+    li Cliente: #{pedido.cliente ? pedido.cliente.nombre + " (" + pedido.cliente.telefono + ")" : '-'}
     li Descripción: #{pedido.descripcion}
     li Precio: #{pedido.precio || '-'}
     li Plataforma: #{pedido.plataforma}

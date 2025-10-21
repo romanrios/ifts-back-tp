@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 // Esquema de Pedido
 const pedidoSchema = new mongoose.Schema({
   cliente: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Cliente',
     required: true,
-    trim: true
   },
   descripcion: {
     type: String,
@@ -37,6 +37,7 @@ const Pedido = mongoose.model('Pedido', pedidoSchema);
 // Obtener todos los pedidos con información del empleado
 async function getAll() {
   const pedidos = await Pedido.find()
+    .populate('cliente', 'nombre telefono')
     .populate('idEmpleado', 'rol area')
     .populate('plataforma', 'nombre tipo')
     .sort({ createdAt: 1 });
@@ -46,6 +47,7 @@ async function getAll() {
 // Obtener pedido por ID
 async function getById(id) {
   const pedido = await Pedido.findById(id)
+    .populate('cliente', 'nombre telefono')
     .populate('idEmpleado', 'rol area')
     .populate('plataforma', 'nombre tipo');
   return pedido;
@@ -53,15 +55,16 @@ async function getById(id) {
 
 // Agregar nuevo pedido
 async function add({ cliente, descripcion, precio, plataforma, idEmpleado }) {
-  const nuevoPedido = new Pedido({ 
-    cliente, 
-    descripcion, 
-    precio: parseFloat(precio), 
-    plataforma, 
-    idEmpleado 
+  const nuevoPedido = new Pedido({
+    cliente,
+    descripcion,
+    precio: parseFloat(precio),
+    plataforma,
+    idEmpleado
   });
   const pedidoGuardado = await nuevoPedido.save();
   return await Pedido.findById(pedidoGuardado._id)
+    .populate('cliente', 'nombre telefono')
     .populate('idEmpleado', 'rol area')
     .populate('plataforma', 'nombre tipo');
 }
@@ -70,16 +73,18 @@ async function add({ cliente, descripcion, precio, plataforma, idEmpleado }) {
 async function update(id, { cliente, descripcion, precio, plataforma, idEmpleado }) {
   const pedidoActualizado = await Pedido.findByIdAndUpdate(
     id,
-    { 
-      cliente, 
-      descripcion, 
-      precio: parseFloat(precio), 
-      plataforma, 
-      idEmpleado 
+    {
+      cliente,
+      descripcion,
+      precio: parseFloat(precio),
+      plataforma,
+      idEmpleado
     },
     { new: true, runValidators: true }
-  ).populate('idEmpleado', 'rol area')
-   .populate('plataforma', 'nombre tipo');
+  )
+    .populate('cliente', 'nombre telefono')
+    .populate('idEmpleado', 'rol area')
+    .populate('plataforma', 'nombre tipo');
   return pedidoActualizado;
 }
 
