@@ -49,7 +49,7 @@ src/
 │   └── productosController.js
 │
 ├── data/                     # Archivos de datos en formato JSON
-│   ├── empleados.json         (solo para referencia, ya que ahora usamos Mongo)
+│   ├── empleados.json        # (Solo para referencia, ya que ahora usamos Mongo)
 │   └── pedidos.json
 │
 ├── middlewares/              # Middlewares personalizados
