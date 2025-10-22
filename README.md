@@ -81,7 +81,6 @@ src/
 │
 └── index.js                 # Punto de entrada de la aplicación
 
-
 ---
 
 ## Instalación y ejecución
