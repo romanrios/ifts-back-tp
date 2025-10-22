@@ -38,30 +38,30 @@ Se desarrolló en base al caso seleccionado del restaurante **“Sabor Urbano”
 src/
 │
 ├── config/
-│   └── db.js                # Conexión a MongoDB con Mongoose
+│   └── db.js                 # Conexión a MongoDB con Mongoose
 │
-├── controllers/             # Controladores de la lógica de negocio
+├── controllers/              # Controladores de la lógica de negocio
 │   ├── clientesController.js
 │   ├── empleadosController.js
 │   ├── pedidosController.js
 │   ├── plataformasController.js
 │   └── productosController.js
 │
-├── data/                # Archivos de datos en formato JSON
+├── data/                     # Archivos de datos en formato JSON
 │   ├── empleados.json
 │   └── pedidos.json
 │
-├── middlewares/         # Middlewares personalizados
+├── middlewares/              # Middlewares personalizados
 │   └── errorHandler.js
 │
-├── models/                 # Modelos de MongoDB con Mongoose
+├── models/                   # Modelos de MongoDB con Mongoose
 │   ├── ClientesModel.js
 │   ├── EmpleadosModel.js
 │   ├── PedidosModel.js
 │   ├── PlataformasModel.js
 │   └── ProductosModel.js
 │
-├── routes/                      # Definición de rutas
+├── routes/                   # Definición de rutas
 │   ├── clienteRoutes.js
 │   ├── empleadoRoutes.js
 │   ├── indexRoutes.js
@@ -69,7 +69,7 @@ src/
 │   ├── plataformaRoutes.js
 │   └── productoRoutes.js
 │
-├── views/                       # Vistas Pug
+├── views/                    # Vistas Pug
 │   ├── clientes/
 │   ├── empleados/
 │   ├── pedidos/
