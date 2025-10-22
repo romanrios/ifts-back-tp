@@ -35,6 +35,7 @@ Se desarrolló en base al caso seleccionado del restaurante **“Sabor Urbano”
 
 ## Estructura del proyecto
 
+```bash
 src/
 │
 ├── config/
@@ -48,7 +49,7 @@ src/
 │   └── productosController.js
 │
 ├── data/                     # Archivos de datos en formato JSON
-│   ├── empleados.json
+│   ├── empleados.json         (solo para referencia, ya que ahora usamos Mongo)
 │   └── pedidos.json
 │
 ├── middlewares/              # Middlewares personalizados
@@ -80,6 +81,7 @@ src/
 │   └── layout.pug
 │
 └── index.js                 # Punto de entrada de la aplicación
+ ```
 
 ---
 
