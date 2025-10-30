@@ -4,12 +4,14 @@ html
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1")
     title Sabor Urbano
+    link(rel="icon" type="image/svg+xml" href="/favicon.svg")
     link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css")
     link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css")
   body.d-flex.flex-column.min-vh-100
     header.bg-dark.text-white.py-3
       .container
-        h1.h3.mb-3 🍔 Sabor Urbano
+        a(href="/" class="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none")
+          img(src="/logo_sabor_urbano.svg" alt="Sabor Urbano" height="48")
         nav
           a.btn.m-1(
             href="/"
