@@ -1,6 +1,7 @@
-extends ../layout.pug
+extends ../layout
 
 block content
+<<<<<<< HEAD
     // Título con Ícono y clase de margen
     h2.mb-4 🚚 Listado de Plataformas
     
@@ -40,5 +41,35 @@ block content
                             form.d-inline(action=`/plataformas/${plataforma._id}?_method=DELETE`, method="POST")
                                 button.btn.btn-sm.btn-danger(type="submit")
                                     i.bi.bi-trash
+=======
+  .d-flex.justify-content-between.align-items-center.mb-3.flex-wrap
+    h2.mb-0 Lista de Plataformas
+    a.btn.btn-success.mt-2.mt-sm-0(href="/plataformas/agregar") Agregar Plataforma
+
+  .table-responsive
+    if plataformas.length
+      table.table.table-bordered.table-sm
+        thead
+          tr
+            th Nombre
+            th Tipo
+            th Comisión (%)
+            th.acciones Acciones
+        tbody
+          each plataforma in plataformas
+            tr
+              td(style="vertical-align: middle;")= plataforma.nombre
+              td(style="vertical-align: middle;")= plataforma.tipo
+              td(style="vertical-align: middle;")= plataforma.comisionPorcentaje + '%'
+              td.acciones.d-flex.gap-1.align-items-center(style="white-space: nowrap;")
+                a.btn.btn-sm.btn-light(href=`/plataformas/${plataforma._id}` title="Ver") 
+                  i(class="bi-eye fs-5") 
+                a.btn.btn-sm.btn-light(href=`/plataformas/${plataforma._id}/editar` title="Editar") 
+                  i(class="bi-pencil fs-5")
+                a.btn.btn-sm.btn-light(href=`/plataformas/${plataforma._id}/borrar` title="Borrar") 
+                  i(class="bi-trash fs-5")
+>>>>>>> 55c5536c504fa26f861259a9cd1f47f73244d357
     else
-        p.alert.alert-info No hay plataformas registradas aún. Puedes agregar una con el botón de arriba.
+      p.alert.alert-info.text-center.mt-3 No hay plataformas registradas aún. 
+      p.text-center 
+        a.btn.btn-success(href="/plataformas/agregar") Agregar una ahora

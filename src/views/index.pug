@@ -1,6 +1,7 @@
 extends layout.pug
 
 block content
+<<<<<<< HEAD
     // Nuevo Bloque de Bienvenida (Jumbotron)
     .p-3.mb-3.bg-light.border.rounded-3.text-center 
         .container-fluid.py-3
@@ -34,3 +35,14 @@ block content
         a.btn.btn-lg.btn-danger(href="/productos") 
             i.bi.bi-box-seam.me-2
             | Productos
+=======
+    h2.mb-3 Bienvenido al Sistema de Gestión
+    p.mb-4 Selecciona una sección para administrar los datos del restaurante:
+
+    .d-flex.gap-2.flex-wrap
+        a.btn.btn-primary(href="/pedidos") Pedidos
+        a.btn.btn-success(href="/empleados") Empleados
+        a.btn.btn-success(href="/clientes") Clientes
+        a.btn.btn-success(href="/plataformas") Plataformas
+        a.btn.btn-success(href="/productos") Productos
+>>>>>>> 55c5536c504fa26f861259a9cd1f47f73244d357

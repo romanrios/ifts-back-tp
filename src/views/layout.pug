@@ -4,19 +4,48 @@ html
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1")
     title Sabor Urbano
+    link(rel="icon" type="image/svg+xml" href="/favicon.svg")
     link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css")
     link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css")
   body.d-flex.flex-column.min-vh-100
     header.bg-dark.text-white.py-3
       .container
-        h1.h3.mb-3 🍔 Sabor Urbano
+        a(href="/")
+          img.m-1(src="/logo_sabor_urbano.svg" alt="Sabor Urbano" height="46")
         nav
+<<<<<<< HEAD
           a.btn.btn-outline-light.me-2(href="/") Inicio
           a.btn.btn-outline-light.me-2(href="/empleados") Empleados
           a.btn.btn-outline-light.me-2(href="/pedidos") Pedidos
           a.btn.btn-outline-light.me-2(href="/clientes") Clientes
           a.btn.btn-outline-light.me-2(href="/plataformas") Plataformas
           a.btn.btn-outline-light(href="/productos") Productos
+=======
+          a.btn.m-1(
+            href="/"
+            class=(currentPath === '/' ? 'btn-light text-dark' : 'btn-outline-light')
+          ) Inicio
+          a.btn.m-1(
+            href="/pedidos"
+            class=(currentPath.startsWith('/pedidos') ? 'btn-light text-dark' : 'btn-outline-light')
+          ) Pedidos
+          a.btn.m-1(
+            href="/empleados"
+            class=(currentPath.startsWith('/empleados') ? 'btn-light text-dark' : 'btn-outline-light')
+          ) Empleados
+          a.btn.m-1(
+            href="/clientes"
+            class=(currentPath.startsWith('/clientes') ? 'btn-light text-dark' : 'btn-outline-light')
+          ) Clientes
+          a.btn.m-1(
+            href="/plataformas"
+            class=(currentPath.startsWith('/plataformas') ? 'btn-light text-dark' : 'btn-outline-light')
+          ) Plataformas
+          a.btn.m-1(
+            href="/productos"
+            class=(currentPath.startsWith('/productos') ? 'btn-light text-dark' : 'btn-outline-light')
+          ) Productos
+>>>>>>> 55c5536c504fa26f861259a9cd1f47f73244d357
     main.container.flex-grow-1.py-4
       block content
     footer.bg-dark.text-white.text-center.py-3

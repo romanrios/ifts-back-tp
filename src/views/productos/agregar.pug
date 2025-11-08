@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  h2.mb-3 Agregar Nuevo Producto
+  form(action="/productos/agregar" method="POST")
+    .mb-3
+      label.form-label(for="nombre") Nombre
+      input.form-contnombre(type="text" name="nombre" id="nombre" placeholder="Ej: Hamburguesa doble" required)
+    .mb-3
+      label.form-label(for="precio") Precio
+      input.form-contnombre(type="text" name="precio" id="precio" placeholder="Ej: 15000" required)
+    .d-flex.gap-2
+      button.btn.btn-primary(type="submit") Agregar Producto
+      a.btn.btn-secondary(href="/") Cancelar
