@@ -1,11 +1,17 @@
 extends ../layout.pug
 
 block content
-    h2 Listado de Plataformas
-    a.btn.btn-success.mb-3(href="/plataformas/agregar") Nueva Plataforma
+    // Título con Ícono y clase de margen
+    h2.mb-4 🚚 Listado de Plataformas
+    
+    // Botón principal con Ícono
+    a.btn.btn-success.mb-3(href="/plataformas/agregar")
+        i.bi.bi-plus-circle.me-2
+        | Nueva Plataforma
     
     if plataformas.length
-        table.table.table-striped
+        // Añadimos .table-hover (ilumina filas al pasar el mouse) y .table-sm (tabla más compacta)
+        table.table.table-striped.table-hover.table-sm 
             thead
                 tr
                     th Nombre
@@ -21,7 +27,18 @@ block content
                         td= plataforma.comisionPorcentaje + '%'
                         td= new Date(plataforma.createdAt).toLocaleDateString()
                         td 
-                            a.btn.btn-sm.btn-info.me-2(href=`/plataformas/${plataforma._id}`) Ver
-                            a.btn.btn-sm.btn-warning(href=`/plataformas/${plataforma._id}/editar`) Editar
+                            // Botón VER/Detalle: Usamos ícono bi-eye
+                            a.btn.btn-sm.btn-info.me-2(href=`/plataformas/${plataforma._id}`)
+                                i.bi.bi-eye
+                            
+                            // Botón EDITAR: Usamos ícono bi-pencil
+                            a.btn.btn-sm.btn-warning.me-2(href=`/plataformas/${plataforma._id}/editar`) 
+                                i.bi.bi-pencil
+
+                            // Botón ELIMINAR/BORRAR: Asumimos que esta acción va en un formulario POST/DELETE
+                            // Si usas un formulario, se vería así:
+                            form.d-inline(action=`/plataformas/${plataforma._id}?_method=DELETE`, method="POST")
+                                button.btn.btn-sm.btn-danger(type="submit")
+                                    i.bi.bi-trash
     else
         p.alert.alert-info No hay plataformas registradas aún. Puedes agregar una con el botón de arriba.

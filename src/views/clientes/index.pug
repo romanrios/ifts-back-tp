@@ -1,0 +1,45 @@
+extends ../layout.pug
+
+block content
+    // Título y Botón Agregar
+    .d-flex.justify-content-between.align-items-center.mb-4
+        h2.mb-0 👤 Lista de Clientes
+        a.btn.btn-success(href="/clientes/agregar")
+            i.bi.bi-person-plus.me-2
+            | Agregar Cliente
+            
+    // Tabla de Clientes
+    if clientes && clientes.length
+        .table-responsive
+            // Clases de estética: table-striped, table-hover, table-sm
+            table.table.table-striped.table-hover.table-sm
+                thead
+                    tr
+                        th Nombre
+                        th Teléfono
+                        th Email
+                        th Dirección
+                        th Acciones
+                tbody
+                    each cliente in clientes
+                        tr
+                            td= cliente.nombre
+                            td= cliente.telefono
+                            td= cliente.email || 'N/A'
+                            td= cliente.direccion || 'N/A'
+                            td 
+                                // Contenedor para botones
+                                .d-flex.gap-2.align-items-center.justify-content-start
+                                    // Botón VER
+                                    a.btn.btn-sm.btn-info(href=`/clientes/${cliente._id}` title="Ver Detalle") 
+                                        i.bi.bi-eye
+                                    
+                                    // Botón EDITAR
+                                    a.btn.btn-sm.btn-warning(href=`/clientes/${cliente._id}/editar` title="Editar") 
+                                        i.bi.bi-pencil
+                                    
+                                    // Botón ELIMINAR (Usando el patrón de enlace a vista de confirmación)
+                                    a.btn.btn-sm.btn-danger(href=`/clientes/${cliente._id}/borrar` title="Eliminar") 
+                                        i.bi.bi-trash
+    else
+        p.alert.alert-info.mt-3 No hay clientes registrados aún.

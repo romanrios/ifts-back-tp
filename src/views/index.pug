@@ -1,9 +1,36 @@
-extends layout
+extends layout.pug
 
 block content
-  h2.mb-3 Bienvenido al Sistema de Gestión
-  p.mb-4 Selecciona una sección para administrar los datos del restaurante:
+    // Nuevo Bloque de Bienvenida (Jumbotron)
+    .p-3.mb-3.bg-light.border.rounded-3.text-center 
+        .container-fluid.py-3
+            h1.display-5.fw-bold Bienvenido al Sistema de Gestión de Sabor Urbano 🍔
+            p.col-md-8.fs-5.mx-auto
+                | Utilice el menú superior o los accesos rápidos para administrar las operaciones.
+    
+    // Contenedores de Acceso Rápido
+    .d-flex.gap-3.justify-content-center
+        // Empleados
+        a.btn.btn-lg.btn-primary(href="/empleados") 
+            i.bi.bi-person-badge.me-2 
+            | Empleados
+        
+        // Pedidos
+        a.btn.btn-lg.btn-success(href="/pedidos") 
+            i.bi.bi-receipt.me-2
+            | Pedidos
 
-  .d-flex.gap-2
-    a.btn.btn-primary(href="/empleados") Empleados
-    a.btn.btn-success(href="/pedidos") Pedidos
+        // Clientes
+        a.btn.btn-lg.btn-info(href="/clientes") 
+            i.bi.bi-people.me-2
+            | Clientes
+
+        // Plataformas
+        a.btn.btn-lg.btn-secondary(href="/plataformas") 
+            i.bi.bi-truck.me-2
+            | Plataformas
+            
+        // Productos
+        a.btn.btn-lg.btn-danger(href="/productos") 
+            i.bi.bi-box-seam.me-2
+            | Productos

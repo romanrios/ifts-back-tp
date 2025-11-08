@@ -1,0 +1,36 @@
+extends ../layout.pug
+
+block content
+    h2.mb-4 Agregar Nuevo Cliente
+    
+    .row.justify-content-center
+        .col-md-6
+            // Formulario que enviará los datos al router.post("/agregar")
+            form(action="/clientes/agregar", method="POST")
+                
+                // Campo Nombre
+                .mb-3
+                    label.form-label(for="nombre") Nombre Completo
+                    input.form-control(type="text", id="nombre", name="nombre", required)
+                
+                // Campo Teléfono
+                .mb-3
+                    label.form-label(for="telefono") Teléfono
+                    input.form-control(type="text", id="telefono", name="telefono", required)
+                
+                // Campo Email
+                .mb-3
+                    label.form-label(for="email") Email
+                    input.form-control(type="email", id="email", name="email")
+                
+                // Campo Dirección
+                .mb-3
+                    label.form-label(for="direccion") Dirección
+                    input.form-control(type="text", id="direccion", name="direccion")
+
+                // Botones de Acción
+                .d-flex.gap-2.mt-4
+                    button.btn.btn-success(type="submit") 
+                        i.bi.bi-save.me-2
+                        | Guardar Cliente
+                    a.btn.btn-secondary(href="/clientes") Cancelar
