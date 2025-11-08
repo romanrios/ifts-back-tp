@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 // Esquema de Pedido
 const pedidoSchema = new mongoose.Schema({
   cliente: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Cliente',
     required: true,
-    trim: true
   },
   descripcion: {
     type: String,
@@ -33,6 +33,13 @@ const pedidoSchema = new mongoose.Schema({
 
 // Modelo de Pedido
 const Pedido = mongoose.model('Pedido', pedidoSchema);
+
+// Populates común: Trae nombre/teléfono del cliente, rol/área del empleado, y nombre/tipo de plataforma
+const pedidoPopulates = [
+    { path: 'cliente', select: 'nombre telefono' }, 
+    { path: 'idEmpleado', select: 'rol area' },
+    { path: 'plataforma', select: 'nombre tipo' }
+];
 
 // Obtener todos los pedidos con información del empleado
 async function getAll() {
@@ -62,8 +69,7 @@ async function add({ cliente, descripcion, precio, plataforma, idEmpleado }) {
   });
   const pedidoGuardado = await nuevoPedido.save();
   return await Pedido.findById(pedidoGuardado._id)
-    .populate('idEmpleado', 'rol area')
-    .populate('plataforma', 'nombre tipo');
+    .populate(pedidoPopulates)
 }
 
 // Actualizar un pedido completo
@@ -78,8 +84,7 @@ async function update(id, { cliente, descripcion, precio, plataforma, idEmpleado
       idEmpleado 
     },
     { new: true, runValidators: true }
-  ).populate('idEmpleado', 'rol area')
-   .populate('plataforma', 'nombre tipo');
+  ).populate(pedidoPopulates);
   return pedidoActualizado;
 }
 
