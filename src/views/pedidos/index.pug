@@ -12,7 +12,7 @@ block content
       thead
         tr
           th Cliente
-          th Descripción
+          th Producto
           th Precio
           th Plataforma
           th Empleado
@@ -20,8 +20,8 @@ block content
       tbody
         each pedido in pedidos
           tr
-            td= pedido.cliente ? `${pedido.cliente.nombre} (${pedido.cliente.telefono})` : 'Sin cliente'
-            td(style="word-break: break-word;")= pedido.descripcion
+            td= pedido.cliente ? `${pedido.cliente.nombre}` : 'Sin cliente'
+            td(style="word-break: break-word;")= pedido.producto.nombre
             td= pedido.precio ? `$${pedido.precio}` : '-'
             td= pedido.plataforma ? pedido.plataforma.nombre : 'Directo'
             td= pedido.idEmpleado ? (pedido.idEmpleado.rol ? `${pedido.idEmpleado.rol} (${pedido.idEmpleado.area})` : pedido.idEmpleado) : '-'
