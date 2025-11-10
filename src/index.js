@@ -1,3 +1,4 @@
+// Imports
 import express from "express";
 import methodOverride from 'method-override';
 import path from "path";
@@ -6,7 +7,9 @@ import indexRoutes from './routes/indexRoutes.js';
 import pedidoRoutes from './routes/pedidoRoutes.js';
 import empleadoRoutes from './routes/empleadoRoutes.js';
 import plataformaRoutes from './routes/plataformaRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 import clienteRoutes from './routes/clienteRoutes.js';
+
 import productoRoutes from './routes/productoRoutes.js'
 import { notFoundHandler, errorHandler } from "./middlewares/errorHandler.js";
 import dotenv from "dotenv";
