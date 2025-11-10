@@ -35,53 +35,41 @@ Se desarrolló en base al caso seleccionado del restaurante **“Sabor Urbano”
 
 ## Estructura del proyecto
 
-```bash
+```
 src/
 │
-├── config/
-│   └── db.js                 # Conexión a MongoDB con Mongoose
+├── config/              # Configuración de la base de datos
+│   └── db.js
 │
-├── controllers/              # Controladores de la lógica de negocio
-│   ├── clientesController.js
+├── controllers/         # Controladores de la lógica de negocio
 │   ├── empleadosController.js
-│   ├── pedidosController.js
-│   ├── plataformasController.js
-│   └── productosController.js
+│   └── pedidosController.js
 │
-├── data/                     # Archivos de datos en formato JSON
-│   ├── empleados.json        # (Solo para referencia, ya que ahora usamos Mongo)
+├── data/                # Archivos de datos en formato JSON
+│   ├── empleados.json
 │   └── pedidos.json
 │
-├── middlewares/              # Middlewares personalizados
+├── middlewares/         # Middlewares personalizados
 │   └── errorHandler.js
 │
-├── models/                   # Modelos de MongoDB con Mongoose
-│   ├── ClientesModel.js
+├── models/              # Modelos de MongoDB con Mongoose
 │   ├── EmpleadosModel.js
-│   ├── PedidosModel.js
-│   ├── PlataformasModel.js
-│   └── ProductosModel.js
+│   └── PedidosModel.js
 │
-├── routes/                   # Definición de rutas
-│   ├── clienteRoutes.js
+├── routes/              # Definición de rutas
 │   ├── empleadoRoutes.js
 │   ├── indexRoutes.js
-│   ├── pedidoRoutes.js
-│   ├── plataformaRoutes.js
-│   └── productoRoutes.js
+│   └── pedidoRoutes.js
 │
-├── views/                    # Vistas Pug
-│   ├── clientes/
+├── views/               # Vistas Pug
 │   ├── empleados/
 │   ├── pedidos/
-│   ├── plataformas/
-│   ├── productos/
 │   ├── error.pug
 │   ├── index.pug
 │   └── layout.pug
 │
-└── index.js                 # Punto de entrada de la aplicación
- ```
+└── index.js             # Punto de entrada de la aplicación
+```
 
 ---
 

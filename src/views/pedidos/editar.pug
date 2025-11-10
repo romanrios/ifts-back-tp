@@ -6,58 +6,29 @@ block content
   form(action=`/pedidos/${pedido._id}?_method=PUT` method="POST")
     .mb-3
       label.form-label(for="cliente") Cliente
-      select.form-select(name="cliente" id="cliente" required)
-        option(value="" disabled) Selecciona un cliente
-        each c in clientes
-          if pedido.cliente && c._id.toString() === pedido.cliente._id.toString()
-            option(value=c._id selected)= `${c.nombre} (${c.telefono})`
-          else
-            option(value=c._id)= `${c.nombre} (${c.telefono})`
-
+      input.form-control(type="text" name="cliente" id="cliente" value=pedido.cliente required)
     .mb-3
-      label.form-label(for="producto") Producto
-      select.form-select(name="producto" id="producto" required onchange="actualizarPrecio()")
-        option(value="" disabled) Selecciona un producto
-        each p in productos
-          if pedido.producto && p._id.toString() === pedido.producto._id.toString()
-            option(value=p._id data-precio=p.precio selected)= `${p.nombre} - $${p.precio}`
-          else
-            option(value=p._id data-precio=p.precio)= `${p.nombre} - $${p.precio}`
-
+      label.form-label(for="descripcion") Descripción
+      input.form-control(type="text" name="descripcion" id="descripcion" value=pedido.descripcion required)
     .mb-3
       label.form-label(for="precio") Precio
-      input.form-control(type="number" step="0.01" name="precio" id="precio" value=pedido.precio required readonly)
-
+      input.form-control(type="number" name="precio" id="precio" value=pedido.precio required)
     .mb-3
       label.form-label(for="plataforma") Plataforma
       select.form-select(name="plataforma" id="plataforma" required)
         option(value="" disabled) Selecciona una plataforma
-        each p in plataformas
-          if pedido.plataforma && p._id.toString() === pedido.plataforma._id.toString()
-            option(value=p._id selected)= `${p.nombre} (${p.tipo})`
-          else
-            option(value=p._id)= `${p.nombre} (${p.tipo})`
-
+        option(value="Sabor Urbano" selected=pedido.plataforma=="Sabor Urbano") Sabor Urbano
+        option(value="Rappi" selected=pedido.plataforma=="Rappi") Rappi
+        option(value="Pedidos Ya" selected=pedido.plataforma=="Pedidos Ya") Pedidos Ya
     .mb-3
       label.form-label(for="idEmpleado") Empleado asignado
       select.form-select(name="idEmpleado" id="idEmpleado" required)
         option(value="" disabled) Selecciona un empleado
         each empleado in empleados
-          if pedido.idEmpleado && empleado._id.toString() === pedido.idEmpleado._id.toString()
-            option(value=empleado._id selected)= `${empleado.rol} (${empleado.area})`
-          else
-            option(value=empleado._id)= `${empleado.rol} (${empleado.area})`
-
+          option(
+            value=empleado._id
+            selected=(pedido.idEmpleado && empleado._id==pedido.idEmpleado._id)
+          ) #{empleado._id} - #{empleado.rol} (#{empleado.area})
     .d-flex.gap-2
       button.btn.btn-primary(type="submit") Guardar cambios
       a.btn.btn-secondary(href="/pedidos") Cancelar
-
-  //- Script para actualizar el precio cuando cambie el producto
-  script.
-    function actualizarPrecio() {
-      const select = document.getElementById('producto');
-      const precioInput = document.getElementById('precio');
-      const selectedOption = select.options[select.selectedIndex];
-      const precio = selectedOption.getAttribute('data-precio');
-      precioInput.value = precio || '';
-    }

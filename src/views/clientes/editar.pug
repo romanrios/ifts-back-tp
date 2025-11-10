@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 extends ../layout.pug
 
 block content
@@ -35,20 +34,3 @@ block content
                         i.bi.bi-save.me-2
                         | Guardar Cambios
                     a.btn.btn-secondary(href="/clientes") Cancelar
-=======
-extends ../layout
-
-block content
-  h2.mb-3 Editar Cliente
-
-  form(action=`/clientes/${cliente._id}?_method=PUT` method="POST")
-    .mb-3
-      label.form-label(for="nombre") Nombre
-      input.form-contnombre(type="text" name="nombre" id="nombre" value=cliente.nombre required)
-    .mb-3
-      label.form-label(for="telefono") Teléfono
-      input.form-contnombre(type="text" name="telefono" id="telefono" value=cliente.telefono required)
-    .d-flex.gap-2
-      button.btn.btn-primary(type="submit") Guardar cambios
-      a.btn.btn-secondary(href="/clientes") Cancelar
->>>>>>> 55c5536c504fa26f861259a9cd1f47f73244d357
