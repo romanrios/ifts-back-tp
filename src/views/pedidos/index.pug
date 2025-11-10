@@ -2,40 +2,34 @@ extends ../layout
 
 block content
   .d-flex.justify-content-between.align-items-center.mb-3
-    h2.mb-0 Lista de Pedidos
-    a.btn.btn-success(href="/pedidos/agregar") Agregar Pedido
+    h2.mb-0 🛒Lista de Pedidos
+    a.btn.btn-success(href="/pedidos/agregar")
+        i.bi.bi-plus-circle.me-2
+        | Agregar Pedido
 
   .table-responsive
-    table.table.table-striped.table-sm(style="table-layout: fixed;")
+    table.table.table-striped.table-hover.table-sm(style="table-layout: fixed;")
       thead
         tr
-          th(style="width: 150px;") Cliente
-          th(style="width: 180px;") Producto
-          th(style="width: 80px;") Precio
-          th(style="width: 150px;") Plataforma
-          th(style="width: 150px;") Empleado
-          th.acciones(style="width: 130px;") Acciones
+          th Cliente
+          th Descripción
+          th Precio
+          th Plataforma
+          th Empleado
+          th.acciones Acciones
       tbody
-        if pedidos.length
-          each pedido in pedidos
-            tr
-              td(style="vertical-align: middle;")= pedido.cliente ? `${pedido.cliente.nombre}` : '-' 
-              td(style="vertical-align: middle; word-break: break-word;")= pedido.producto ? `${pedido.producto.nombre} ` : '-' 
-              td(style="vertical-align: middle;")= pedido.precio ? `$${pedido.precio}` : '-' 
-              td(style="vertical-align: middle;")= pedido.plataforma ? `${pedido.plataforma.nombre}` : '-' 
-              td(style="vertical-align: middle; word-break: break-word;")
-                if pedido.idEmpleado
-                  | #{pedido.idEmpleado.rol} (#{pedido.idEmpleado.area})
-                else
-                  | -
-              td.acciones
-                .d-flex.align-items-center.justify-content-center(style="height:100%; gap:0.25rem; flex-wrap:nowrap; overflow:hidden;")
-                  a.btn.btn-sm.btn-light(href=`/pedidos/${pedido._id}` title="Ver") 
-                    i(class="bi-eye fs-5")
-                  a.btn.btn-sm.btn-light(href=`/pedidos/${pedido._id}/editar` title="Editar") 
-                    i(class="bi-pencil fs-5")
-                  a.btn.btn-sm.btn-light(href=`/pedidos/${pedido._id}/borrar` title="Borrar") 
-                    i(class="bi-trash fs-5")
-        else
+        each pedido in pedidos
           tr
-            td.text-center(colspan="6") No hay pedidos registrados.
+            td= pedido.cliente ? `${pedido.cliente.nombre} (${pedido.cliente.telefono})` : 'Sin cliente'
+            td(style="word-break: break-word;")= pedido.descripcion
+            td= pedido.precio ? `$${pedido.precio}` : '-'
+            td= pedido.plataforma ? pedido.plataforma.nombre : 'Directo'
+            td= pedido.idEmpleado ? (pedido.idEmpleado.rol ? `${pedido.idEmpleado.rol} (${pedido.idEmpleado.area})` : pedido.idEmpleado) : '-'
+            td.acciones
+              .d-flex.align-items-center.justify-content-center(style="height:100%; gap:0.25rem; flex-wrap:nowrap; overflow:hidden;")
+                a.btn.btn-sm.btn-info(href=`/pedidos/${pedido._id}` title="Ver") 
+                  i.bi.bi-eye
+                a.btn.btn-sm.btn-warning(href=`/pedidos/${pedido._id}/editar` title="Editar") 
+                  i.bi.bi-pencil
+                a.btn.btn-sm.btn-danger(href=`/pedidos/${pedido._id}/borrar` title="Borrar") 
+                  i.bi.bi-trash
