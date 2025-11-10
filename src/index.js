@@ -28,13 +28,8 @@ app.set("views", path.join(__dirname, "views"));
 // Middlewares globales
 app.use(express.urlencoded({ extended: true }));    // Procesa formularios
 app.use(express.json());                            // Procesa JSON
-app.use(methodOverride('_method'));                 // Permite PUT/DELETE desde formularios
-
 app.use(express.static(path.join(__dirname, "public")));    // Archivos estáticos
-app.get("/logo_sabor_urbano.svg", (req, res) => {   // logo en caché para que no se pida siempre
-  res.set("Cache-Control", "public, max-age=86400"); // 1 día
-  res.sendFile(__dirname + "/public/logo_sabor_urbano.svg");
-});
+app.use(methodOverride('_method'));                 // Permite PUT/DELETE desde formularios
 
 // Middleware para detectar ruta actual y usarla en las vistas
 app.use((req, res, next) => {
