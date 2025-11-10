@@ -1,6 +1,8 @@
 import model from "../models/PedidosModel.js";
 import empleadosModel from "../models/EmpleadosModel.js";
 import plataformasModel from "../models/PlataformasModel.js";
+import clientesModel from "../models/ClientesModel.js";
+import productosModel from "../models/ProductosModel.js";
 
 // IDs de pedidos de muestra (bloqueados)
 const SAMPLE_PEDIDO_IDS = [
@@ -23,8 +25,10 @@ async function getPedidos(req, res) {
 async function getPedidoAgregar(req, res) {
     try {
         const empleados = await empleadosModel.getAll();
+        const clientes = await clientesModel.getAll();
         const plataformas = await plataformasModel.getAll();
-        res.render("pedidos/agregar", { empleados, plataformas });
+        const productos = await productosModel.getAll();
+        res.render("pedidos/agregar", { empleados, clientes, plataformas, productos });
     } catch (error) {
         console.error('Error en getPedidoAgregar:', error);
         res.status(500).render("error", { mensaje: "Error al obtener empleados" });
@@ -38,11 +42,11 @@ async function getPedidoEditar(req, res) {
         if (!pedido) {
             return res.status(404).render("error", { mensaje: "Pedido no encontrado" });
         }
-
         const empleados = await empleadosModel.getAll();
+        const clientes = await clientesModel.getAll();
         const plataformas = await plataformasModel.getAll();
-
-        res.render("pedidos/editar", { pedido, empleados, plataformas });
+        const productos = await productosModel.getAll();
+        res.render("pedidos/editar", { pedido, empleados, clientes, plataformas, productos });
     } catch (error) {
         console.error('Error en getPedidoEditar:', error);
         res.status(500).render("error", { mensaje: "Error al obtener pedido" });
@@ -81,8 +85,8 @@ async function getPedidoById(req, res) {
 
 async function addPedido(req, res) {
     try {
-        const { cliente, descripcion, precio, plataforma, idEmpleado } = req.body;
-        await model.add({ cliente, descripcion, precio, plataforma, idEmpleado });
+        const { cliente, producto, precio, plataforma, idEmpleado } = req.body;
+        await model.add({ cliente, producto, precio, plataforma, idEmpleado });
         res.redirect("/pedidos");
     } catch (error) {
         console.error('Error en addPedido:', error);
@@ -100,8 +104,8 @@ async function updatePedido(req, res) {
             return res.status(403).render("error", { mensaje: "Este pedido es de muestra y no se puede modificar." });
         }
 
-        const { cliente, descripcion, precio, plataforma, idEmpleado } = req.body;
-        const actualizado = await model.update(id, { cliente, descripcion, precio, plataforma, idEmpleado });
+        const { cliente, producto, precio, plataforma, idEmpleado } = req.body;
+        const actualizado = await model.update(id, { cliente, producto, precio, plataforma, idEmpleado });
 
         if (!actualizado) {
             return res.status(404).render("error", { mensaje: "Pedido no encontrado" });

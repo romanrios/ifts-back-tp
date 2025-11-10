@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  h2 Detalle de Cliente
+  ul
+    li ID: #{cliente._id}
+    li Nombre: #{cliente.nombre}
+    li Teléfono: #{cliente.telefono}
+  a.btn.btn-secondary.mt-3(href="/clientes") Volver
