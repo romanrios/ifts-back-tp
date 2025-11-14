@@ -1,12 +1,12 @@
 extends layout
 
 block content
+  include flashMessages
+
   if user
     h2.mb-4 Bienvenido #{user.username}
 
     .row.g-4
-
-      // Panel de edición
       .col-md-6
         .card.shadow-sm
           .card-body
@@ -44,14 +44,15 @@ block content
 
               button.btn.btn-primary(type="submit") Guardar cambios
 
-      // Panel de acciones
       .col-md-6
         .card.shadow-sm
           .card-body
             h4.mb-3 Acciones de la cuenta
 
-            a.btn.btn-danger.w-100.mb-3(href="/auth/delete" onclick="return confirm('¿Estás seguro de eliminar tu usuario? Esta acción no se puede deshacer.');")
-              | Eliminar mi usuario
+            a.btn.btn-danger.w-100.mb-3(
+              href="/auth/delete"
+              onclick="return confirm('¿Estás seguro de eliminar tu usuario? Esta acción no se puede deshacer.');"
+            ) Eliminar mi usuario
 
             a.btn.btn-secondary.w-100(href="/auth/logout")
               | Cerrar sesión

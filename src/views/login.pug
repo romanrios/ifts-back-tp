@@ -7,9 +7,8 @@ block content
         .card-body
           h3.text-center.mb-3 Iniciar Sesión
 
-          if message && message.length
-            .alert.alert-danger.mb-3= message
-
+          include flashMessages
+          
           form(action="/auth/login" method="POST")
             .mb-3
               label.form-label(for="username") Usuario

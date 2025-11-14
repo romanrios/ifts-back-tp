@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import session from "express-session";
 import passport from "passport";
 import flash from "connect-flash";
+
 import initializePassport from "./config/passportConfig.js";
 import connectDB from "./config/db.js";
 
@@ -17,6 +18,8 @@ import empleadoRoutes from "./routes/empleadoRoutes.js";
 import plataformaRoutes from "./routes/plataformaRoutes.js";
 import clienteRoutes from "./routes/clienteRoutes.js";
 import productoRoutes from "./routes/productoRoutes.js";
+
+import { ensureAuthenticated } from "./middlewares/ensureAuth.js";
 
 import { notFoundHandler, errorHandler } from "./middlewares/errorHandler.js";
 
@@ -50,31 +53,20 @@ app.use(methodOverride("_method"));
 
 app.use((req, res, next) => {
   res.locals.currentPath = req.path;
-  res.locals.user = req.user;
-  next();
-});
+  res.locals.user = req.user || null;
 
-const openPaths = [
-  "/auth/login",
-  "/auth/register",
-  "/auth/logout",
-  "/favicon.ico"
-];
-
-app.use((req, res, next) => {
-  if (req.path.startsWith("/public")) return next();
-
-  if (openPaths.includes(req.path)) return next();
-
-  if (!req.isAuthenticated || !req.isAuthenticated()) {
-    return res.redirect("/auth/login");
-  }
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.info = req.flash("info");
 
   next();
 });
+
+app.use("/auth", authRoutes);
+
+app.use(ensureAuthenticated);
 
 app.use("/", indexRoutes);
-app.use("/auth", authRoutes);
 app.use("/pedidos", pedidoRoutes);
 app.use("/empleados", empleadoRoutes);
 app.use("/plataformas", plataformaRoutes);
