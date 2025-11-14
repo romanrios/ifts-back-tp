@@ -12,32 +12,43 @@ html
       .container
         a(href="/")
           img.m-1(src="/logo_sabor_urbano.svg" alt="Sabor Urbano" height="46")
+
         nav
           a.btn.m-1(
             href="/"
             class=(currentPath === '/' ? 'btn-light text-dark' : 'btn-outline-light')
           ) Inicio
+
           a.btn.m-1(
             href="/pedidos"
             class=(currentPath.startsWith('/pedidos') ? 'btn-light text-dark' : 'btn-outline-light')
           ) Pedidos
+
           a.btn.m-1(
             href="/empleados"
             class=(currentPath.startsWith('/empleados') ? 'btn-light text-dark' : 'btn-outline-light')
           ) Empleados
+
           a.btn.m-1(
             href="/clientes"
             class=(currentPath.startsWith('/clientes') ? 'btn-light text-dark' : 'btn-outline-light')
           ) Clientes
+
           a.btn.m-1(
             href="/plataformas"
             class=(currentPath.startsWith('/plataformas') ? 'btn-light text-dark' : 'btn-outline-light')
           ) Plataformas
+
           a.btn.m-1(
             href="/productos"
             class=(currentPath.startsWith('/productos') ? 'btn-light text-dark' : 'btn-outline-light')
           ) Productos
+
+          if user
+            a.btn.btn-danger.m-1(href="/auth/logout") Cerrar Sesión
+
     main.container.flex-grow-1.py-4
       block content
+
     footer.bg-dark.text-white.text-center.py-3
       | © 2025 Sabor Urbano
