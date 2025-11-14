@@ -44,9 +44,6 @@ html
             class=(currentPath.startsWith('/productos') ? 'btn-light text-dark' : 'btn-outline-light')
           ) Productos
 
-          if user
-            a.btn.btn-danger.m-1(href="/auth/logout") Cerrar Sesión
-
     main.container.flex-grow-1.py-4
       block content
 

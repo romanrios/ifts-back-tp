@@ -7,7 +7,7 @@ block content
         .card-body
           h3.text-center.mb-3 Iniciar Sesión
 
-          if message
+          if message && message.length
             .alert.alert-danger.mb-3= message
 
           form(action="/auth/login" method="POST")
