@@ -4,58 +4,27 @@ block content
   include flashMessages
 
   if user
-    h2.mb-4 Bienvenido #{user.username}
+    // Contenedor principal relativo
+    .position-relative(style="min-height: 350px;")
 
-    .row.g-4
-      .col-md-6
-        .card.shadow-sm
-          .card-body
-            h4.mb-3 Editar datos de tu cuenta
+      h2.mb-4 Bienvenido #{user.username}
 
-            form(action="/auth/update" method="POST")
-              .mb-3
-                label.form-label(for="username") Usuario
-                input.form-control(
-                  type="text"
-                  name="username"
-                  id="username"
-                  value=user.username
-                  required
-                )
+      .d-flex.gap-3.mt-4
+        a.btn.btn-primary(href="/cuenta") Modificar datos de la cuenta
+        a.btn.btn-secondary(href="/auth/logout") Cerrar sesión
 
-              .mb-3
-                label.form-label(for="email") Email
-                input.form-control(
-                  type="email"
-                  name="email"
-                  id="email"
-                  value=user.email
-                  required
-                )
-
-              .mb-3
-                label.form-label(for="password") Nueva Contraseña
-                input.form-control(
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Dejar vacío para no cambiar"
-                )
-
-              button.btn.btn-primary(type="submit") Guardar cambios
-
-      .col-md-6
-        .card.shadow-sm
-          .card-body
-            h4.mb-3 Acciones de la cuenta
-
-            a.btn.btn-danger.w-100.mb-3(
-              href="/auth/delete"
-              onclick="return confirm('¿Estás seguro de eliminar tu usuario? Esta acción no se puede deshacer.');"
-            ) Eliminar mi usuario
-
-            a.btn.btn-secondary.w-100(href="/auth/logout")
-              | Cerrar sesión
+      // Imagen posicionada dentro del contenedor
+      img.position-absolute(
+        src="/burger.png"
+        alt="Hamburguesa"
+        style="          bottom: 0;
+          right: 0;
+          width: 380px;
+          max-width: 40%;
+          opacity: .9;
+          pointer-events: none;
+        "
+      )
 
   else
     h2.text-center.mt-5 Debes iniciar sesión para acceder a esta página
