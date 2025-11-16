@@ -12,14 +12,10 @@ router.post('/login',
     failureFlash: true
   })
 );
-
 router.get('/register', authCtrl.getRegister);
 router.post('/register', authCtrl.register);
-
 router.get('/logout', authCtrl.logout);
-
 router.post('/update', authCtrl.update);
-
 router.get('/delete', authCtrl.delete);
 
 export default router;

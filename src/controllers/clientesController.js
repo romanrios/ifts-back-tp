@@ -79,7 +79,6 @@ async function updateCliente(req, res) {
         const { id } = req.params;
         const { nombre, telefono } = req.body;
 
-        // Evitar edición de muestras
         if (SAMPLE_CLIENT_IDS.includes(id)) {
             return res.status(403).render("error", { mensaje: "Este cliente es de muestra y no se puede modificar." });
         }
@@ -90,7 +89,6 @@ async function updateCliente(req, res) {
             return res.status(404).render("error", { mensaje: "Cliente no encontrado" });
         }
 
-        // Devuelve JSON si la petición lo solicita, si no redirige
         if (req.xhr || (req.headers.accept?.includes('json'))) {
             return res.json({ mensaje: "Cliente actualizado", cliente: actualizado });
         }
@@ -107,7 +105,6 @@ async function deleteCliente(req, res) {
     try {
         const { id } = req.params;
 
-        // Evitar borrado de muestras
         if (SAMPLE_CLIENT_IDS.includes(id)) {
             return res.status(403).render("error", { mensaje: "Este cliente es de muestra y no se puede modificar." });
         }

@@ -79,7 +79,6 @@ async function updateEmpleado(req, res) {
         const { id } = req.params;
         const { rol, area } = req.body;
 
-        // Evitar edición de muestras
         if (SAMPLE_EMPLOYEE_IDS.includes(id)) {
             return res.status(403).render("error", { mensaje: "Este empleado es de muestra y no se puede modificar." });
         }
@@ -90,7 +89,6 @@ async function updateEmpleado(req, res) {
             return res.status(404).render("error", { mensaje: "Empleado no encontrado" });
         }
 
-        // Devuelve JSON si la petición lo solicita, si no redirige
         if (req.xhr || (req.headers.accept?.includes('json'))) {
             return res.json({ mensaje: "Empleado actualizado", empleado: actualizado });
         }
@@ -107,7 +105,6 @@ async function deleteEmpleado(req, res) {
     try {
         const { id } = req.params;
 
-        // Evitar borrado de muestras
         if (SAMPLE_EMPLOYEE_IDS.includes(id)) {
             return res.status(403).render("error", { mensaje: "Este empleado es de muestra y no se puede modificar." });
         }
