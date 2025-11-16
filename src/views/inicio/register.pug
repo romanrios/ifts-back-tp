@@ -1,22 +1,30 @@
-extends layout
+extends ../layout
 
 block content
   .row.justify-content-center
     .col-md-5
       .card.shadow-sm
         .card-body
-          h3.text-center.mb-3 Iniciar Sesión
+          h3.text-center.mb-3 Crear Cuenta
 
           include flashMessages
-          
-          form(action="/auth/login" method="POST")
+
+          form(action="/auth/register" method="POST")
             .mb-3
-              label.form-label(for="username") Usuario o Email
+              label.form-label(for="username") Usuario
               input.form-control(
                 type="text"
                 name="username"
                 id="username"
-                placeholder="Ingrese su usuario"
+                required
+              )
+
+            .mb-3
+              label.form-label(for="email") Email
+              input.form-control(
+                type="email"
+                name="email"
+                id="email"
                 required
               )
 
@@ -26,11 +34,10 @@ block content
                 type="password"
                 name="password"
                 id="password"
-                placeholder="Ingrese su contraseña"
                 required
               )
 
-            button.btn.btn-primary.w-100(type="submit") Ingresar
+            button.btn.btn-success.w-100(type="submit") Registrarse
 
           .text-center.mt-3
-            a(href="/auth/register") Crear una cuenta nueva
+            a(href="/auth/login") Ya tengo cuenta

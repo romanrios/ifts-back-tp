@@ -2,11 +2,11 @@ import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 
 async function getLogin(req, res) {
-  res.render('login');
+  res.render('inicio/login');
 }
 
 async function getRegister(req, res) {
-  res.render('register');
+  res.render('inicio/register');
 }
 
 async function register(req, res) {
