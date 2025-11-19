@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-// Esquema de Plataforma
 const plataformaSchema = new mongoose.Schema({
     nombre: {
         type: String,
@@ -24,10 +23,8 @@ const plataformaSchema = new mongoose.Schema({
     timestamps: true 
 });
 
-// Modelo de Plataforma
 const Plataforma = mongoose.model('Plataforma', plataformaSchema);
 
-// Funciones CRUD
 async function getAll() {
     const plataformas = await Plataforma.find().sort({ nombre: 1 });
     return plataformas;

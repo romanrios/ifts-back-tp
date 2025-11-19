@@ -1,0 +1,59 @@
+extends ../layout
+
+block content
+  include flashMessages
+
+  if user
+    h2.mb-4 Bienvenido #{user.username}
+
+    .row.gy-4
+
+      .col-12.col-md-7
+        .card.shadow-sm.h-100
+          .card-body
+            h4.mb-3 Accesos rápidos
+
+            .row.g-4
+              .col-6.col-lg-4
+                a.btn.btn-outline-primary.w-100.py-3.d-flex.flex-column.align-items-center.gap-2(href="/pedidos")
+                  i.bi.bi-receipt-cutoff.fs-1
+                  span Pedidos
+
+              .col-6.col-lg-4
+                a.btn.btn-outline-primary.w-100.py-3.d-flex.flex-column.align-items-center.gap-2(href="/empleados")
+                  i.bi.bi-people.fs-1
+                  span Empleados
+
+              .col-6.col-lg-4
+                a.btn.btn-outline-primary.w-100.py-3.d-flex.flex-column.align-items-center.gap-2(href="/clientes")
+                  i.bi.bi-person-badge.fs-1
+                  span Clientes
+
+              .col-6.col-lg-4
+                a.btn.btn-outline-primary.w-100.py-3.d-flex.flex-column.align-items-center.gap-2(href="/plataformas")
+                  i.bi.bi-send.fs-1
+                  span Plataformas
+
+              .col-6.col-lg-4
+                a.btn.btn-outline-primary.w-100.py-3.d-flex.flex-column.align-items-center.gap-2(href="/productos")
+                  i.bi.bi-basket2-fill.fs-1
+                  span Productos
+
+
+      .col-12.col-md-5
+        .card.shadow-sm.h-100
+          .card-body
+            h4.mb-3 Mi cuenta
+
+            .d-flex.flex-column.gap-3
+              a.btn.btn-outline-primary.w-100.py-3.d-flex.flex-column.align-items-center.gap-2(href="/cuenta")
+                i.bi.bi-person-lines-fill.fs-1
+                span Modificar cuenta
+
+              a.btn.btn-outline-danger.w-100.py-3.d-flex.flex-column.align-items-center.gap-2(href="/auth/logout")
+                i.bi.bi-box-arrow-right.fs-1
+                span Cerrar sesión
+
+  else
+    h2.text-center.mt-5 Debes iniciar sesión para acceder a esta página
+    a.btn.btn-primary.mt-3(href="/auth/login") Iniciar Sesión

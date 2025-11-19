@@ -35,12 +35,10 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// Método para validar contraseña
 userSchema.methods.isValidPassword = async function (password) {
   return bcrypt.compare(password, this.passwordHash);
 };
 
-// Quitar datos sensibles al enviar JSON
 userSchema.set("toJSON", {
   transform: (doc, ret) => {
     ret.id = ret._id.toString();

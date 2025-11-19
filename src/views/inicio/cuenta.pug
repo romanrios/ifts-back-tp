@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
   include flashMessages
@@ -6,11 +6,13 @@ block content
   if user
     h2.mb-4 Editar datos de tu cuenta
 
+    a.btn.btn-secondary.mb-4(href="/") Volver al inicio
+
     .row.g-4
       .col-md-6
         .card.shadow-sm
           .card-body
-            h4.mb-3 Datos personales
+            h4.mb-3 Modificar cuenta
 
             form(action="/auth/update" method="POST")
               .mb-3
@@ -44,17 +46,16 @@ block content
 
               button.btn.btn-primary(type="submit") Guardar cambios
 
+      // Sección eliminar cuenta
       .col-md-6
         .card.shadow-sm
           .card-body
-            h4.mb-3 Acciones
+            h4.mb-3 Eliminar cuenta
 
-            a.btn.btn-danger.w-100.mb-3(
+            a.btn.btn-danger.w-50.mb-3(
               href="/auth/delete"
               onclick="return confirm('¿Estás seguro de eliminar tu usuario? Esta acción no se puede deshacer?');"
-            ) Eliminar mi cuenta
-
-            a.btn.btn-secondary.w-100(href="/") Volver al inicio
+            ) Eliminar cuenta
 
   else
     h2.text-center.mt-5 Debes iniciar sesión para acceder a esta página

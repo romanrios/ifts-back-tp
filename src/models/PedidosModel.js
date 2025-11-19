@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-// Esquema de Pedido
 const pedidoSchema = new mongoose.Schema({
   cliente: {
     type: mongoose.Schema.Types.ObjectId,
@@ -28,13 +27,11 @@ const pedidoSchema = new mongoose.Schema({
     required: true
   }
 }, {
-  timestamps: true // Agrega createdAt y updatedAt automáticamente
+  timestamps: true
 });
 
-// Modelo de Pedido
 const Pedido = mongoose.model('Pedido', pedidoSchema);
 
-// Obtener todos los pedidos con información del empleado
 async function getAll() {
   const pedidos = await Pedido.find()
     .populate('cliente', 'nombre telefono')
@@ -45,7 +42,6 @@ async function getAll() {
   return pedidos;
 }
 
-// Obtener pedido por ID
 async function getById(id) {
   const pedido = await Pedido.findById(id)
     .populate('cliente', 'nombre telefono')
@@ -55,7 +51,6 @@ async function getById(id) {
   return pedido;
 }
 
-// Agregar nuevo pedido
 async function add({ cliente, producto, precio, plataforma, idEmpleado }) {
   const nuevoPedido = new Pedido({
     cliente,
@@ -72,7 +67,6 @@ async function add({ cliente, producto, precio, plataforma, idEmpleado }) {
     .populate('producto', 'nombre precio');
 }
 
-// Actualizar un pedido completo
 async function update(id, { cliente, producto, precio, plataforma, idEmpleado }) {
   const pedidoActualizado = await Pedido.findByIdAndUpdate(
     id,
@@ -92,7 +86,6 @@ async function update(id, { cliente, producto, precio, plataforma, idEmpleado })
   return pedidoActualizado;
 }
 
-// Eliminar pedido
 async function remove(id) {
   const pedidoEliminado = await Pedido.findByIdAndDelete(id);
   return pedidoEliminado;

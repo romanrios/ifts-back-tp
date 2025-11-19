@@ -4,7 +4,6 @@ import plataformasModel from "../models/PlataformasModel.js";
 import clientesModel from "../models/ClientesModel.js";
 import productosModel from "../models/ProductosModel.js";
 
-// IDs de pedidos de muestra (bloqueados)
 const SAMPLE_PEDIDO_IDS = [
     "68d964a1e32ff7a7ffa5f8fa",
     "68d964bde32ff7a7ffa5f905",
@@ -94,12 +93,10 @@ async function addPedido(req, res) {
     }
 }
 
-// PUT - reemplazar el pedido completo
 async function updatePedido(req, res) {
     try {
         const { id } = req.params;
 
-        // Evitar edición de pedidos de muestra
         if (SAMPLE_PEDIDO_IDS.includes(id)) {
             return res.status(403).render("error", { mensaje: "Este pedido es de muestra y no se puede modificar." });
         }
@@ -123,7 +120,6 @@ async function deletePedido(req, res) {
     try {
         const { id } = req.params;
 
-        // Evitar borrado de pedidos de muestra
         if (SAMPLE_PEDIDO_IDS.includes(id)) {
             return res.status(403).render("error", { mensaje: "Este pedido es de muestra y no se puede modificar." });
         }

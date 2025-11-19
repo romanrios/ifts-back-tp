@@ -4,11 +4,11 @@ import { ensureAuthenticated } from "../middlewares/ensureAuth.js";
 const router = express.Router();
 
 router.get("/", ensureAuthenticated, (req, res) => {
-  res.render("index");
+  res.render("inicio/index");
 });
 
 router.get("/cuenta", ensureAuthenticated, (req, res) => {
-  res.render("cuenta");
+  res.render("inicio/cuenta");
 });
 
 export default router;

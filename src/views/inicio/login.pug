@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
   .row.justify-content-center
@@ -11,7 +11,7 @@ block content
           
           form(action="/auth/login" method="POST")
             .mb-3
-              label.form-label(for="username") Usuario
+              label.form-label(for="username") Usuario o Email
               input.form-control(
                 type="text"
                 name="username"

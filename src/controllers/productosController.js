@@ -79,7 +79,6 @@ async function updateProducto(req, res) {
         const { id } = req.params;
         const { nombre, precio } = req.body;
 
-        // Evitar edición de muestras
         if (SAMPLE_PRODUCT_IDS.includes(id)) {
             return res.status(403).render("error", { mensaje: "Este producto es de muestra y no se puede modificar." });
         }
@@ -90,7 +89,6 @@ async function updateProducto(req, res) {
             return res.status(404).render("error", { mensaje: "Producto no encontrado" });
         }
 
-        // Devuelve JSON si la petición lo solicita, si no redirige
         if (req.xhr || (req.headers.accept?.includes('json'))) {
             return res.json({ mensaje: "Producto actualizado", producto: actualizado });
         }
@@ -102,12 +100,10 @@ async function updateProducto(req, res) {
     }
 }
 
-
 async function deleteProducto(req, res) {
     try {
         const { id } = req.params;
 
-        // Evitar borrado de muestras
         if (SAMPLE_PRODUCT_IDS.includes(id)) {
             return res.status(403).render("error", { mensaje: "Este producto es de muestra y no se puede modificar." });
         }
@@ -124,6 +120,5 @@ async function deleteProducto(req, res) {
         res.status(500).render("error", { mensaje: "Error al eliminar producto" });
     }
 }
-
 
 export default { getProductos, getProductoAgregar, getProductoBorrar, getProductoEditar, getProductoById, addProducto, updateProducto, deleteProducto };
