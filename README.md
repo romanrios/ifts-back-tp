@@ -1,4 +1,4 @@
-# Trabajo Integrador – Desarrollo Web Backend
+# Proyecto Integrador – Desarrollo Web Backend
 IFTS N° 29 | Año 2025 | Comisión A | Grupo 11
 
 <img width="1366" height="768" alt="screenshot" src="https://github.com/user-attachments/assets/2f2bf3af-bf7d-432b-a0cd-eb8ffe184a78" />
@@ -16,7 +16,12 @@ IFTS N° 29 | Año 2025 | Comisión A | Grupo 11
 ---
 
 ## Descripción
-Proyecto correspondiente al caso “Sabor Urbano”. Backend desarrollado en **Express.js**, con **Pug** para vistas y **MongoDB/Mongoose** como base de datos. Incluye autenticación, manejo de sesiones, control de acceso, gestión de cuenta y CRUD completos de todos los módulos del sistema.
+
+Proyecto basado en el caso “Restaurante Sabor Urbano”. Backend desarrollado en Express.js, con Pug para las vistas y MongoDB/Mongoose como base de datos.
+
+Incluye autenticación con Passport, manejo de sesiones, control de acceso, administración de cuenta y CRUD completos de todos los módulos.
+
+Integra arquitectura MVC, renderizado de vistas, protección de rutas y pruebas básicas. El sistema fue diseñado y desarrollado en equipo como proyecto integrador de la cursada.
 
 ---
 
@@ -107,40 +112,6 @@ src/
 
 ---
 
-## Modelos
-
-### Usuario
-```javascript
-{
-  username: String,
-  email: String,
-  passwordHash: String
-}
-```
-
-### Empleado
-```javascript
-{
-  _id: ObjectId,
-  rol: String,
-  area: String
-}
-```
-
-### Pedido
-```javascript
-{
-  _id: ObjectId,
-  cliente: ObjectId,
-  producto: ObjectId,
-  plataforma: ObjectId,
-  idEmpleado: ObjectId,
-  precio: Number,
-  descripcion: String
-}
-```
-
----
 
 ## Instalación y Ejecución
 
@@ -185,16 +156,8 @@ http://localhost:3000
 
 ---
 
-## Notas Técnicas
-- Passport se eligió por su integración directa con express-session.  
-- JWT no se utilizó porque el proyecto requiere manejo de sesiones y renderizado de vistas.  
-- Todas las contraseñas son hasheadas con bcrypt.  
-- Las pruebas cubrieron tanto funcionalidades unitarias como integración entre módulos.
-
----
-
-## Conclusión
-Proyecto completo que integra arquitectura MVC, autenticación, base de datos, vistas renderizadas, protección de rutas y testing práctico. Diseñado y desarrollado en equipo para el cierre de la cursada.
-
+**Instituto de Formación Técnica Superior N°29**
+Tecnicatura Superior en Desarrollo de Software
+Año 2025
 
 
