@@ -17,11 +17,12 @@ IFTS N° 29 | Año 2025 | Comisión A | Grupo 11
 
 ## Descripción
 
-Proyecto basado en el caso “Restaurante Sabor Urbano”. Backend desarrollado en Express.js, con Pug para las vistas y MongoDB/Mongoose como base de datos.
+Proyecto desarrollado a partir del caso **“Restaurante Sabor Urbano”**, implementado con **Express.js** en el backend, **Pug** para el renderizado de vistas y **MongoDB/Mongoose** como sistema de base de datos.
 
-Incluye autenticación con Passport, manejo de sesiones, control de acceso, administración de cuenta y CRUD completos de todos los módulos.
+El sistema incorpora **autenticación con Passport**, gestión de sesiones, control de acceso mediante middleware, administración de cuenta y **CRUD completos** para todos los módulos.
 
-Integra arquitectura MVC, renderizado de vistas, protección de rutas y pruebas básicas. El sistema fue diseñado y desarrollado en equipo como proyecto integrador de la cursada.
+Se basa en una arquitectura **MVC**, con vistas dinámicas, rutas protegidas y pruebas funcionales. Fue diseñado y construido de manera colaborativa como proyecto integrador de la cursada.
+
 
 ---
 
